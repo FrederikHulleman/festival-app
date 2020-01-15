@@ -7,8 +7,6 @@
         <th>Created</th>
     </tr>
 
-    <!-- Here is where we iterate through our $festivals query object, printing out article info -->
-
     <?php foreach ($festivals as $festival): ?>
     <tr>
         <td>
