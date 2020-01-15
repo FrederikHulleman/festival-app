@@ -34,7 +34,7 @@ class BandsController extends AppController
     public function view($id = null)
     {
         $band = $this->Bands->get($id, [
-            'contain' => [],
+            'contain' => ['Timetable'],
         ]);
 
         $this->set('band', $band);

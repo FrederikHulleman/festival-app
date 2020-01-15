@@ -68,11 +68,13 @@ class DatesTable extends Table
 
         $validator
             ->dateTime('starttime')
-            ->allowEmptyDateTime('starttime');
+            ->requirePresence('starttime', 'create')
+            ->notEmptyDateTime('starttime');
 
         $validator
             ->dateTime('endtime')
-            ->allowEmptyDateTime('endtime');
+            ->requirePresence('endtime', 'create')
+            ->notEmptyDateTime('endtime');
 
         return $validator;
     }

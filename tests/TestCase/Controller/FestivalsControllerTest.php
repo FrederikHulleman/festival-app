@@ -21,6 +21,10 @@ class FestivalsControllerTest extends TestCase
      */
     public $fixtures = [
         'app.Festivals',
+        'app.Dates',
+        'app.Stages',
+        'app.Tickets',
+        'app.Timetable',
     ];
 
     /**

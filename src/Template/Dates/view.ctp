@@ -87,8 +87,8 @@
                 <th scope="col"><?= __('Festival Id') ?></th>
                 <th scope="col"><?= __('Date Id') ?></th>
                 <th scope="col"><?= __('Stage Id') ?></th>
-                <th scope="col"><?= __('Start Time') ?></th>
-                <th scope="col"><?= __('End Time') ?></th>
+                <th scope="col"><?= __('Starttime') ?></th>
+                <th scope="col"><?= __('Endtime') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -99,8 +99,8 @@
                 <td><?= h($timetable->festival_id) ?></td>
                 <td><?= h($timetable->date_id) ?></td>
                 <td><?= h($timetable->stage_id) ?></td>
-                <td><?= h($timetable->start_time) ?></td>
-                <td><?= h($timetable->end_time) ?></td>
+                <td><?= h($timetable->starttime) ?></td>
+                <td><?= h($timetable->endtime) ?></td>
                 <td><?= h($timetable->created) ?></td>
                 <td><?= h($timetable->modified) ?></td>
                 <td class="actions">

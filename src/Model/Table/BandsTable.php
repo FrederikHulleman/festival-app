@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Bands Model
  *
- * @property &\Cake\ORM\Association\HasMany $Timetable
+ * @property \App\Model\Table\TimetableTable&\Cake\ORM\Association\HasMany $Timetable
  *
  * @method \App\Model\Entity\Band get($primaryKey, $options = [])
  * @method \App\Model\Entity\Band newEntity($data = null, array $options = [])
@@ -59,8 +59,9 @@ class BandsTable extends Table
 
         $validator
             ->scalar('name')
-            ->maxLength('name', 191)
-            ->allowEmptyString('name');
+            ->maxLength('name', 255)
+            ->requirePresence('name', 'create')
+            ->notEmptyString('name');
 
         $validator
             ->scalar('slug')

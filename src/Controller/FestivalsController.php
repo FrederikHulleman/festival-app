@@ -34,7 +34,7 @@ class FestivalsController extends AppController
     public function view($id = null)
     {
         $festival = $this->Festivals->get($id, [
-            'contain' => [],
+            'contain' => ['Dates', 'Stages', 'Tickets', 'Timetable'],
         ]);
 
         $this->set('festival', $festival);

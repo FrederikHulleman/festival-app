@@ -21,6 +21,7 @@ class BandsControllerTest extends TestCase
      */
     public $fixtures = [
         'app.Bands',
+        'app.Timetable',
     ];
 
     /**

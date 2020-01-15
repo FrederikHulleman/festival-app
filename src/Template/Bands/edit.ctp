@@ -14,6 +14,8 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Bands'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Timetable'), ['controller' => 'Timetable', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Timetable'), ['controller' => 'Timetable', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="bands form large-9 medium-8 columns content">

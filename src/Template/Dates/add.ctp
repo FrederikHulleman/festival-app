@@ -22,8 +22,8 @@
         <legend><?= __('Add Date') ?></legend>
         <?php
             echo $this->Form->control('festival_id', ['options' => $festivals]);
-            echo $this->Form->control('starttime', ['empty' => true]);
-            echo $this->Form->control('endtime', ['empty' => true]);
+            echo $this->Form->control('starttime');
+            echo $this->Form->control('endtime');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

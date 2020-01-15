@@ -9,10 +9,10 @@ use Cake\Validation\Validator;
 /**
  * Festivals Model
  *
- * @property &\Cake\ORM\Association\HasMany $Dates
- * @property &\Cake\ORM\Association\HasMany $Stages
- * @property &\Cake\ORM\Association\HasMany $Tickets
- * @property &\Cake\ORM\Association\HasMany $Timetable
+ * @property \App\Model\Table\DatesTable&\Cake\ORM\Association\HasMany $Dates
+ * @property \App\Model\Table\StagesTable&\Cake\ORM\Association\HasMany $Stages
+ * @property \App\Model\Table\TicketsTable&\Cake\ORM\Association\HasMany $Tickets
+ * @property \App\Model\Table\TimetableTable&\Cake\ORM\Association\HasMany $Timetable
  *
  * @method \App\Model\Entity\Festival get($primaryKey, $options = [])
  * @method \App\Model\Entity\Festival newEntity($data = null, array $options = [])
@@ -72,7 +72,8 @@ class FestivalsTable extends Table
         $validator
             ->scalar('title')
             ->maxLength('title', 255)
-            ->allowEmptyString('title');
+            ->requirePresence('title', 'create')
+            ->notEmptyString('title');
 
         $validator
             ->scalar('slug')

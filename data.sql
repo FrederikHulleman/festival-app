@@ -13,7 +13,7 @@ CREATE TABLE users (
 -- main festival characteristics 
 CREATE TABLE festivals (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255),
+    title VARCHAR(255) NOT NULL,
     slug VARCHAR(191) NOT NULL,
     description TEXT,
     created DATETIME,
@@ -25,8 +25,8 @@ CREATE TABLE festivals (
 CREATE TABLE dates (
     id INT AUTO_INCREMENT PRIMARY KEY,
     festival_id INT NOT NULL,
-    starttime DATETIME, 
-    endtime DATETIME,
+    starttime DATETIME NOT NULL, 
+    endtime DATETIME NOT NULL,
     created DATETIME,
     modified DATETIME,
     FOREIGN KEY festival_key (festival_id) REFERENCES festivals(id)
@@ -35,7 +35,7 @@ CREATE TABLE dates (
 -- main band characteristics 
 CREATE TABLE bands (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(191),
+    name VARCHAR(255) NOT NULL,
     slug VARCHAR(191) NOT NULL,
     description TEXT,
     created DATETIME,
@@ -47,7 +47,7 @@ CREATE TABLE bands (
 CREATE TABLE stages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     festival_id INT NOT NULL, 
-    name VARCHAR(191),
+    name VARCHAR(255) NOT NULL,
     slug VARCHAR(191) NOT NULL,
     created DATETIME,
     modified DATETIME,
@@ -62,8 +62,8 @@ CREATE TABLE timetable (
     festival_id INT NOT NULL, 
     date_id INT NOT NULL,
     stage_id INT NOT NULL,
-    start_time VARCHAR(5),
-    end_time VARCHAR(5),
+    starttime VARCHAR(5) NOT NULL,
+    endtime VARCHAR(5) NOT NULL,
     created DATETIME,
     modified DATETIME,
     PRIMARY KEY (band_id, festival_id, date_id, stage_id),

@@ -24,6 +24,10 @@ class FestivalsTableTest extends TestCase
      */
     public $fixtures = [
         'app.Festivals',
+        'app.Dates',
+        'app.Stages',
+        'app.Tickets',
+        'app.Timetable',
     ];
 
     /**
@@ -56,6 +60,36 @@ class FestivalsTableTest extends TestCase
      * @return void
      */
     public function testInitialize()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test beforeSave method
+     *
+     * @return void
+     */
+    public function testBeforeSave()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test validationDefault method
+     *
+     * @return void
+     */
+    public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

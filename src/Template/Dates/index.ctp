@@ -34,7 +34,7 @@
             <?php foreach ($dates as $date): ?>
             <tr>
                 <td><?= $this->Number->format($date->id) ?></td>
-                <td><?= $date->has('festival') ? $this->Html->link($date->festival->title, ['controller' => 'Festivals', 'action' => 'view', $date->festival->slug]) : '' ?></td>
+                <td><?= $date->has('festival') ? $this->Html->link($date->festival->title, ['controller' => 'Festivals', 'action' => 'view', $date->festival->id]) : '' ?></td>
                 <td><?= h($date->starttime) ?></td>
                 <td><?= h($date->endtime) ?></td>
                 <td><?= h($date->created) ?></td>

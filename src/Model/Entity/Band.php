@@ -7,11 +7,13 @@ use Cake\ORM\Entity;
  * Band Entity
  *
  * @property int $id
- * @property string|null $name
+ * @property string $name
  * @property string $slug
  * @property string|null $description
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ *
+ * @property \App\Model\Entity\Timetable[] $timetable
  */
 class Band extends Entity
 {
@@ -30,5 +32,6 @@ class Band extends Entity
         'description' => true,
         'created' => true,
         'modified' => true,
+        'timetable' => true,
     ];
 }

@@ -7,11 +7,16 @@ use Cake\ORM\Entity;
  * Festival Entity
  *
  * @property int $id
- * @property string|null $title
+ * @property string $title
  * @property string $slug
  * @property string|null $description
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ *
+ * @property \App\Model\Entity\Date[] $dates
+ * @property \App\Model\Entity\Stage[] $stages
+ * @property \App\Model\Entity\Ticket[] $tickets
+ * @property \App\Model\Entity\Timetable[] $timetable
  */
 class Festival extends Entity
 {
@@ -30,5 +35,9 @@ class Festival extends Entity
         'description' => true,
         'created' => true,
         'modified' => true,
+        'dates' => true,
+        'stages' => true,
+        'tickets' => true,
+        'timetable' => true,
     ];
 }

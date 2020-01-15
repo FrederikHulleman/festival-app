@@ -24,6 +24,7 @@ class BandsTableTest extends TestCase
      */
     public $fixtures = [
         'app.Bands',
+        'app.Timetable',
     ];
 
     /**
@@ -61,21 +62,21 @@ class BandsTableTest extends TestCase
     }
 
     /**
-     * Test beforeSave method
-     *
-     * @return void
-     */
-    public function testBeforeSave()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
      * Test validationDefault method
      *
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

@@ -17,8 +17,8 @@ class DatesFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'festival_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'starttime' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
-        'endtime' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'starttime' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'endtime' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_indexes' => [
@@ -45,10 +45,10 @@ class DatesFixture extends TestFixture
             [
                 'id' => 1,
                 'festival_id' => 1,
-                'starttime' => '2020-01-15 15:17:38',
-                'endtime' => '2020-01-15 15:17:38',
-                'created' => '2020-01-15 15:17:38',
-                'modified' => '2020-01-15 15:17:38',
+                'starttime' => '2020-01-15 16:14:58',
+                'endtime' => '2020-01-15 16:14:58',
+                'created' => '2020-01-15 16:14:58',
+                'modified' => '2020-01-15 16:14:58',
             ],
         ];
         parent::init();
