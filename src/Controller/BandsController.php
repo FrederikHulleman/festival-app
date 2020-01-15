@@ -57,4 +57,15 @@ class BandsController extends AppController
 
         $this->set('band', $band);
     }
+
+    public function delete($slug)
+{
+    $this->request->allowMethod(['post', 'delete']);
+
+    $band = $this->Bands->findBySlug($slug)->firstOrFail();
+    if ($this->Bands->delete($band)) {
+        $this->Flash->success(__('The {0} band has been deleted.', $band->name));
+        return $this->redirect(['action' => 'index']);
+    }
+}
 }
