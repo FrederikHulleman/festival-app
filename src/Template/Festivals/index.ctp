@@ -12,7 +12,7 @@
     <?php foreach ($festivals as $festival): ?>
     <tr>
         <td>
-            <?= $this->Html->link($festival->title, ['action' => 'view', $festival->id]) ?>
+            <?= $this->Html->link($festival->title, ['action' => 'view', $festival->slug]) ?>
         </td>
         <td>
             <?= $festival->created->format(DATE_RFC850) ?>

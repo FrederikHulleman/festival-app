@@ -101,6 +101,7 @@ INSERT INTO users (email, password, created, modified)
 VALUES
 ('cakephp@example.com', 'secret', NOW(), NOW());
 
-INSERT INTO festivals (title, slug, description, created, modified) VALUES
+INSERT INTO festivals (title, slug, description, created, modified) 
+VALUES
 ('Leidsche Rijn Mahler Festival', 'leidsche-rijn-mahler-festival','Come and enjoy the best & only Mahler festival in the World, in the best place to live: Leidsche Rijn!', NOW(), NOW());
 

@@ -12,9 +12,9 @@ class FestivalsController extends AppController
         $this->set(compact('festivals'));
     }
 
-    public function view($id = null)
+    public function view($slug = null)
     {
-        $festival = $this->Festivals->findById($id)->firstOrFail();
+        $festival = $this->Festivals->findBySlug($slug)->firstOrFail();
         $this->set(compact('festival'));
     }
 }
