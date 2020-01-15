@@ -1,0 +1,90 @@
+2020-01-15 11:46:57 Error: [Cake\View\Exception\MissingTemplateException] Template file "Festivals/index.ctp" is missing. (/Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/View/View.php:1583)
+Exception Attributes: array (
+  'file' => 'Festivals/index.ctp',
+)
+#0 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/View/View.php(875): Cake\View\View->_getViewFileName('Festivals/index')
+#1 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Controller/Controller.php(795): Cake\View\View->render(NULL, NULL)
+#2 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(126): Cake\Controller\Controller->render()
+#3 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(94): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\FestivalsController))
+#4 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/BaseApplication.php(234): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php(124): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#9 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#10 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#18 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#19 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Server.php(97): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#20 /Users/frederikhulleman/Documents/Sites/festival-app/webroot/index.php(40): Cake\Http\Server->run()
+#21 {main}
+Request URL: /festivals/index
+
+
+2020-01-15 12:42:18 Error: [Cake\Controller\Exception\MissingActionException] Action FestivalsController::view() could not be found, or is not accessible. (/Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Controller/Controller.php:599)
+Exception Attributes: array (
+  'controller' => 'FestivalsController',
+  'action' => 'view',
+  'prefix' => '',
+  'plugin' => false,
+)
+#0 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(120): Cake\Controller\Controller->invokeAction()
+#1 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(94): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\FestivalsController))
+#2 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/BaseApplication.php(234): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#5 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php(124): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Server.php(97): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#18 /Users/frederikhulleman/Documents/Sites/festival-app/webroot/index.php(40): Cake\Http\Server->run()
+#19 {main}
+Request URL: /festivals/view/1
+Referer URL: http://localhost:8765/festivals
+
+
+2020-01-15 12:48:35 Error: [Cake\View\Exception\MissingTemplateException] Template file "Festivals/view.ctp" is missing. (/Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/View/View.php:1583)
+Exception Attributes: array (
+  'file' => 'Festivals/view.ctp',
+)
+#0 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/View/View.php(875): Cake\View\View->_getViewFileName('Festivals/view')
+#1 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Controller/Controller.php(795): Cake\View\View->render(NULL, NULL)
+#2 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(126): Cake\Controller\Controller->render()
+#3 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(94): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\FestivalsController))
+#4 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/BaseApplication.php(234): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php(124): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#9 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#10 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(168): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(96): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/debug_kit/src/Middleware/DebugKitMiddleware.php(53): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#18 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#19 /Users/frederikhulleman/Documents/Sites/festival-app/vendor/cakephp/cakephp/src/Http/Server.php(97): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#20 /Users/frederikhulleman/Documents/Sites/festival-app/webroot/index.php(40): Cake\Http\Server->run()
+#21 {main}
+Request URL: /festivals/view/1
+Referer URL: http://localhost:8765/festivals
+
+

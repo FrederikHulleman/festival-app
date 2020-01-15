@@ -13,11 +13,12 @@ CREATE TABLE users (
 -- main festival characteristics 
 CREATE TABLE festivals (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(191),
+    title VARCHAR(255),
+    slug VARCHAR(191) NOT NULL,
     description TEXT,
     created DATETIME,
     modified DATETIME,
-    UNIQUE KEY (title)
+    UNIQUE KEY (slug)
 )  CHARSET=utf8mb4;
 
 -- dates on which the festivals take place, incl. start &  end time
@@ -35,10 +36,11 @@ CREATE TABLE festival_dates (
 CREATE TABLE bands (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(191),
+    slug VARCHAR(191) NOT NULL,
     description TEXT,
     created DATETIME,
     modified DATETIME,
-    UNIQUE KEY (name)
+    UNIQUE KEY (slug)
 )  CHARSET=utf8mb4;
 
 -- stages available on a festival 
@@ -46,9 +48,10 @@ CREATE TABLE stages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     festival_id INT NOT NULL, 
     name VARCHAR(191),
+    slug VARCHAR(191) NOT NULL,
     created DATETIME,
     modified DATETIME,
-    UNIQUE KEY (name),
+    UNIQUE KEY (slug),
     FOREIGN KEY festival_key (festival_id) REFERENCES festivals(id)
 )  CHARSET=utf8mb4;
 
@@ -97,4 +100,7 @@ CREATE TABLE tickets (
 INSERT INTO users (email, password, created, modified)
 VALUES
 ('cakephp@example.com', 'secret', NOW(), NOW());
+
+INSERT INTO festivals (title, slug, description, created, modified) VALUES
+('Leidsche Rijn Mahler Festival', 'leidsche-rijn-mahler-festival','Come and enjoy the best & only Mahler festival in the World, in the best place to live: Leidsche Rijn!', NOW(), NOW());
 
