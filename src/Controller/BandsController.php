@@ -42,4 +42,19 @@ class BandsController extends AppController
         }
         $this->set('band', $band);
     }
+
+    public function edit($slug)
+    {
+        $band = $this->Bands->findBySlug($slug)->firstOrFail();
+        if ($this->request->is(['post', 'put'])) {
+            $this->Bands->patchEntity($band, $this->request->getData());
+            if ($this->Bands->save($band)) {
+                $this->Flash->success(__('Your band has been updated.'));
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('Unable to update your band.'));
+        }
+
+        $this->set('band', $band);
+    }
 }

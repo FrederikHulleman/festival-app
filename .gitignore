@@ -1,7 +1,6 @@
 composer.phar
 /vendor/*
 /config/app.php
-
 /tmp/cache/models/*
 !/tmp/cache/models/empty
 /tmp/cache/persistent/*
@@ -12,7 +11,6 @@ composer.phar
 !/tmp/sessions/empty
 /tmp/tests/*
 !/tmp/tests/empty
-
 /logs/*
 !/logs/empty
 
