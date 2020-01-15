@@ -1,9 +1,31 @@
-<h1>Edit Band</h1>
 <?php
-    echo $this->Form->create($band);
-    //echo $this->Form->control('user_id', ['type' => 'hidden']);
-    echo $this->Form->control('name');
-    echo $this->Form->control('description', ['rows' => '3']);
-    echo $this->Form->button(__('Save Band'));
-    echo $this->Form->end();
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Band $band
+ */
 ?>
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $band->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $band->id)]
+            )
+        ?></li>
+        <li><?= $this->Html->link(__('List Bands'), ['action' => 'index']) ?></li>
+    </ul>
+</nav>
+<div class="bands form large-9 medium-8 columns content">
+    <?= $this->Form->create($band) ?>
+    <fieldset>
+        <legend><?= __('Edit Band') ?></legend>
+        <?php
+            echo $this->Form->control('name');
+            echo $this->Form->control('slug');
+            echo $this->Form->control('description');
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>

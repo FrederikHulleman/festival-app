@@ -1,6 +1,44 @@
-<!-- File: src/Template/Festivals/view.ctp -->
-
-<h1><?= h($festival->title) ?></h1>
-<p><?= h($festival->description) ?></p>
-<p><small>Created: <?= $festival->created->format(DATE_RFC850) ?></small></p>
-<p><?= $this->Html->link('Edit', ['action' => 'edit', $festival->slug]) ?></p>
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Festival $festival
+ */
+?>
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Edit Festival'), ['action' => 'edit', $festival->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Festival'), ['action' => 'delete', $festival->id], ['confirm' => __('Are you sure you want to delete # {0}?', $festival->id)]) ?> </li>
+        <li><?= $this->Html->link(__('List Festivals'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Festival'), ['action' => 'add']) ?> </li>
+    </ul>
+</nav>
+<div class="festivals view large-9 medium-8 columns content">
+    <h3><?= h($festival->title) ?></h3>
+    <table class="vertical-table">
+        <tr>
+            <th scope="row"><?= __('Title') ?></th>
+            <td><?= h($festival->title) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Slug') ?></th>
+            <td><?= h($festival->slug) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($festival->id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Created') ?></th>
+            <td><?= h($festival->created) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Modified') ?></th>
+            <td><?= h($festival->modified) ?></td>
+        </tr>
+    </table>
+    <div class="row">
+        <h4><?= __('Description') ?></h4>
+        <?= $this->Text->autoParagraph(h($festival->description)); ?>
+    </div>
+</div>

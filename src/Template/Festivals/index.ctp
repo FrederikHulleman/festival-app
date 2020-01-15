@@ -1,20 +1,53 @@
-<!-- File: src/Template/Festivals/index.ctp -->
-
-<h1>Festivals</h1>
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Created</th>
-    </tr>
-
-    <?php foreach ($festivals as $festival): ?>
-    <tr>
-        <td>
-            <?= $this->Html->link($festival->title, ['action' => 'view', $festival->slug]) ?>
-        </td>
-        <td>
-            <?= $festival->created->format(DATE_RFC850) ?>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Festival[]|\Cake\Collection\CollectionInterface $festivals
+ */
+?>
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('New Festival'), ['action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="festivals index large-9 medium-8 columns content">
+    <h3><?= __('Festivals') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('slug') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($festivals as $festival): ?>
+            <tr>
+                <td><?= $this->Number->format($festival->id) ?></td>
+                <td><?= h($festival->title) ?></td>
+                <td><?= h($festival->slug) ?></td>
+                <td><?= h($festival->created) ?></td>
+                <td><?= h($festival->modified) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $festival->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $festival->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $festival->id], ['confirm' => __('Are you sure you want to delete # {0}?', $festival->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    </div>
+</div>

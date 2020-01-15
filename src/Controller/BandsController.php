@@ -1,71 +1,106 @@
 <?php
-
 namespace App\Controller;
 
+use App\Controller\AppController;
+
+/**
+ * Bands Controller
+ *
+ * @property \App\Model\Table\BandsTable $Bands
+ *
+ * @method \App\Model\Entity\Band[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ */
 class BandsController extends AppController
 {
-    public function initialize()
-    {
-        parent::initialize();
-
-        $this->loadComponent('Paginator');
-        $this->loadComponent('Flash'); // Include the FlashComponent
-    }
-    
+    /**
+     * Index method
+     *
+     * @return \Cake\Http\Response|null
+     */
     public function index()
     {
-        $bands = $this->Paginator->paginate($this->Bands->find());
+        $bands = $this->paginate($this->Bands);
+
         $this->set(compact('bands'));
     }
 
-    public function view($slug = null)
+    /**
+     * View method
+     *
+     * @param string|null $id Band id.
+     * @return \Cake\Http\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
     {
-        $band = $this->Bands->findBySlug($slug)->firstOrFail();
-        $this->set(compact('band'));
+        $band = $this->Bands->get($id, [
+            'contain' => [],
+        ]);
+
+        $this->set('band', $band);
     }
 
+    /**
+     * Add method
+     *
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     */
     public function add()
     {
         $band = $this->Bands->newEntity();
         if ($this->request->is('post')) {
             $band = $this->Bands->patchEntity($band, $this->request->getData());
-
-            // Hardcoding the user_id is temporary, and will be removed later
-            // when we build authentication out.
-            // $article->user_id = 1;
-
             if ($this->Bands->save($band)) {
-                $this->Flash->success(__('Your band has been saved.'));
+                $this->Flash->success(__('The band has been saved.'));
+
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Unable to add your band.'));
+            $this->Flash->error(__('The band could not be saved. Please, try again.'));
         }
-        $this->set('band', $band);
+        $this->set(compact('band'));
     }
 
-    public function edit($slug)
+    /**
+     * Edit method
+     *
+     * @param string|null $id Band id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function edit($id = null)
     {
-        $band = $this->Bands->findBySlug($slug)->firstOrFail();
-        if ($this->request->is(['post', 'put'])) {
-            $this->Bands->patchEntity($band, $this->request->getData());
+        $band = $this->Bands->get($id, [
+            'contain' => [],
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $band = $this->Bands->patchEntity($band, $this->request->getData());
             if ($this->Bands->save($band)) {
-                $this->Flash->success(__('Your band has been updated.'));
+                $this->Flash->success(__('The band has been saved.'));
+
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Unable to update your band.'));
+            $this->Flash->error(__('The band could not be saved. Please, try again.'));
         }
-
-        $this->set('band', $band);
+        $this->set(compact('band'));
     }
 
-    public function delete($slug)
-{
-    $this->request->allowMethod(['post', 'delete']);
+    /**
+     * Delete method
+     *
+     * @param string|null $id Band id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $band = $this->Bands->get($id);
+        if ($this->Bands->delete($band)) {
+            $this->Flash->success(__('The band has been deleted.'));
+        } else {
+            $this->Flash->error(__('The band could not be deleted. Please, try again.'));
+        }
 
-    $band = $this->Bands->findBySlug($slug)->firstOrFail();
-    if ($this->Bands->delete($band)) {
-        $this->Flash->success(__('The {0} band has been deleted.', $band->name));
         return $this->redirect(['action' => 'index']);
     }
-}
 }
