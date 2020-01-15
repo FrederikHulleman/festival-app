@@ -31,11 +31,11 @@ class FestivalsController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($slug = null)
     {
-        $festival = $this->Festivals->get($id, [
+        $festival = $this->Festivals->findBySlug($slug, [
             'contain' => ['Dates', 'Stages', 'Tickets', 'Timetable'],
-        ]);
+        ])->firstOrFail();
 
         $this->set('festival', $festival);
     }
@@ -67,11 +67,11 @@ class FestivalsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($slug = null)
     {
-        $festival = $this->Festivals->get($id, [
+        $festival = $this->Festivals->findBySlug($slug, [
             'contain' => [],
-        ]);
+        ])->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $festival = $this->Festivals->patchEntity($festival, $this->request->getData());
             if ($this->Festivals->save($festival)) {
@@ -91,10 +91,10 @@ class FestivalsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($slug = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $festival = $this->Festivals->get($id);
+        $festival = $this->Festivals->findBySlug($slug)->firstOrFail();
         if ($this->Festivals->delete($festival)) {
             $this->Flash->success(__('The festival has been deleted.'));
         } else {

@@ -31,9 +31,9 @@ class BandsController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($slug = null)
     {
-        $band = $this->Bands->get($id, [
+        $band = $this->Bands->findBySlug($slug, [
             'contain' => ['Timetable'],
         ]);
 
@@ -67,11 +67,11 @@ class BandsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($slug = null)
     {
-        $band = $this->Bands->get($id, [
+        $band = $this->Bands->findBySlug($slug, [
             'contain' => [],
-        ]);
+        ])->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $band = $this->Bands->patchEntity($band, $this->request->getData());
             if ($this->Bands->save($band)) {
@@ -91,10 +91,10 @@ class BandsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($slug = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $band = $this->Bands->get($id);
+        $band = $this->Bands->findBySlug($slug)->firstOrFail();
         if ($this->Bands->delete($band)) {
             $this->Flash->success(__('The band has been deleted.'));
         } else {
