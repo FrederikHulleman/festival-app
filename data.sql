@@ -46,13 +46,13 @@ CREATE TABLE stages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     festival_id INT NOT NULL, 
     name VARCHAR(191),
-    UNIQUE KEY (name),
     created DATETIME,
     modified DATETIME,
+    UNIQUE KEY (name),
     FOREIGN KEY festival_key (festival_id) REFERENCES festivals(id)
 )  CHARSET=utf8mb4;
 
--- links bands, festival, festival planning & stage
+-- timetable table: links bands, festival, festival planning & stage
 -- table includes start & end time
 CREATE TABLE timetable (
     band_id INT NOT NULL,
@@ -79,7 +79,8 @@ CREATE TABLE visitors (
     UNIQUE KEY (email)
 )  CHARSET=utf8mb4;
 
--- links visitor, fesival & dates  
+-- tickets table: links visitor, fesival & dates  
+-- includes confirmed boolean to store whether the email was sent
 CREATE TABLE tickets (
     festival_id INT NOT NULL, 
     festival_date_id INT NOT NULL,
