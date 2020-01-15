@@ -1,4 +1,5 @@
 <h1>Bands</h1>
+<?= $this->Html->link('Add Band', ['action' => 'add']) ?>
 <table>
     <tr>
         <th>Title</th>
