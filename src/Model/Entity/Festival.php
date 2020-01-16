@@ -31,7 +31,7 @@ class Festival extends Entity
      */
     protected $_accessible = [
         'title' => true,
-        'slug' => true,
+        'slug' => false,
         'description' => true,
         'created' => true,
         'modified' => true,

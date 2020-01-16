@@ -33,9 +33,10 @@ class FestivalsController extends AppController
      */
     public function view($slug = null)
     {
-        $festival = $this->Festivals->findBySlug($slug, [
-            'contain' => ['Dates', 'Stages', 'Tickets', 'Timetable'],
-        ])->firstOrFail();
+        $festival = $this->Festivals->findBySlug($slug)->firstOrFail();
+        // $festival = $this->Festivals->findBySlug($slug, [
+        //     'contain' => ['Dates', 'Stages', 'Tickets', 'Timetable'],
+        // ])->firstOrFail();
 
         $this->set('festival', $festival);
     }
@@ -69,9 +70,10 @@ class FestivalsController extends AppController
      */
     public function edit($slug = null)
     {
-        $festival = $this->Festivals->findBySlug($slug, [
-            'contain' => [],
-        ])->firstOrFail();
+        $festival = $this->Festivals->findBySlug($slug)->firstOrFail();
+        // $festival = $this->Festivals->findBySlug($slug, [
+        //     'contain' => [],
+        // ])->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $festival = $this->Festivals->patchEntity($festival, $this->request->getData());
             if ($this->Festivals->save($festival)) {

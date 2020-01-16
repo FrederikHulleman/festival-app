@@ -33,9 +33,10 @@ class BandsController extends AppController
      */
     public function view($slug = null)
     {
-        $band = $this->Bands->findBySlug($slug, [
-            'contain' => ['Timetable'],
-        ])->firstOrFail();
+        $band = $this->Bands->findBySlug($slug)->firstOrFail();
+        // $band = $this->Bands->findBySlug($slug, [
+        //     'contain' => ['Timetable'],
+        // ])->firstOrFail();
 
         $this->set('band', $band);
     }
@@ -69,9 +70,10 @@ class BandsController extends AppController
      */
     public function edit($slug = null)
     {
-        $band = $this->Bands->findBySlug($slug, [
-            'contain' => [],
-        ])->firstOrFail();
+        $band = $this->Bands->findBySlug($slug)->firstOrFail();
+        // $band = $this->Bands->findBySlug($slug, [
+        //     'contain' => [],
+        // ])->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $band = $this->Bands->patchEntity($band, $this->request->getData());
             if ($this->Bands->save($band)) {

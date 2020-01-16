@@ -67,6 +67,13 @@ class DatesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+            ->scalar('slug')
+            ->maxLength('slug', 10)
+            ->requirePresence('slug', 'create')
+            ->notEmptyString('slug')
+            ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+
+        $validator
             ->dateTime('starttime')
             ->requirePresence('starttime', 'create')
             ->notEmptyDateTime('starttime');
@@ -88,8 +95,16 @@ class DatesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['slug']));
         $rules->add($rules->existsIn(['festival_id'], 'Festivals'));
 
         return $rules;
+    }
+
+    public function beforeSave($event, $entity, $options)
+    {
+        if ($entity->isNew() && !$entity->slug) {
+            $entity->slug = date_format($starttime,"Y-m-d");
+        }
     }
 }

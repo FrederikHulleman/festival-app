@@ -36,9 +36,10 @@ class DatesController extends AppController
      */
     public function view($slug = null)
     {
-        $date = $this->Dates->findBySlug($slug, [
-            'contain' => ['Festivals', 'Tickets', 'Timetable'],
-        ])->firstOrFail();
+        $date = $this->Dates->findBySlug($slug)->firstOrFail();
+        // $date = $this->Dates->findBySlug($slug, [
+        //     'contain' => ['Festivals', 'Tickets', 'Timetable'],
+        // ])->firstOrFail();
 
         $this->set('date', $date);
     }
@@ -73,9 +74,10 @@ class DatesController extends AppController
      */
     public function edit($slug = null)
     {
-        $date = $this->Dates->findBySlug($slug, [
-            'contain' => [],
-        ])->firstOrFail();
+        $date = $this->Dates->findBySlug($slug)->firstOrFail();
+        // $date = $this->Dates->findBySlug($slug, [
+        //     'contain' => [],
+        // ])->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $date = $this->Dates->patchEntity($date, $this->request->getData());
             if ($this->Dates->save($date)) {

@@ -8,6 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $festival_id
+ * @property string $slug
  * @property \Cake\I18n\FrozenTime $starttime
  * @property \Cake\I18n\FrozenTime $endtime
  * @property \Cake\I18n\FrozenTime|null $created
@@ -30,6 +31,7 @@ class Date extends Entity
      */
     protected $_accessible = [
         'festival_id' => true,
+        'slug' => false,
         'starttime' => true,
         'endtime' => true,
         'created' => true,

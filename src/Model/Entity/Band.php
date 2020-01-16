@@ -28,7 +28,7 @@ class Band extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'slug' => true,
+        'slug' => false,
         'description' => true,
         'created' => true,
         'modified' => true,

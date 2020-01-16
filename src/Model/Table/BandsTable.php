@@ -90,4 +90,13 @@ class BandsTable extends Table
 
         return $rules;
     }
+
+    public function beforeSave($event, $entity, $options)
+    {
+        if ($entity->isNew() && !$entity->slug) {
+            $slug = Text::slug($entity->name);
+            // trim slug to maximum length defined in schema
+            $entity->slug = substr($slug, 0, 191);
+        }
+    }
 }

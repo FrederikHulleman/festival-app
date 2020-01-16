@@ -17,6 +17,7 @@ class DatesFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'festival_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'slug' => ['type' => 'string', 'length' => 10, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'starttime' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'endtime' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
@@ -26,6 +27,7 @@ class DatesFixture extends TestFixture
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'slug' => ['type' => 'unique', 'columns' => ['slug'], 'length' => []],
             'dates_ibfk_1' => ['type' => 'foreign', 'columns' => ['festival_id'], 'references' => ['festivals', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
@@ -45,10 +47,11 @@ class DatesFixture extends TestFixture
             [
                 'id' => 1,
                 'festival_id' => 1,
-                'starttime' => '2020-01-15 16:14:58',
-                'endtime' => '2020-01-15 16:14:58',
-                'created' => '2020-01-15 16:14:58',
-                'modified' => '2020-01-15 16:14:58',
+                'slug' => 'Lorem ip',
+                'starttime' => '2020-01-16 07:50:14',
+                'endtime' => '2020-01-16 07:50:14',
+                'created' => '2020-01-16 07:50:14',
+                'modified' => '2020-01-16 07:50:14',
             ],
         ];
         parent::init();
