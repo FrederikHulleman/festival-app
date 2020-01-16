@@ -12,6 +12,7 @@ use App\Controller\AppController;
  */
 class BandsController extends AppController
 {
+    
     /**
      * Index method
      *
@@ -31,12 +32,9 @@ class BandsController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($slug = null)
+    public function view($slug)
     {
-        $band = $this->Bands->findBySlug($slug)->firstOrFail();
-        // $band = $this->Bands->findBySlug($slug, [
-        //     'contain' => ['Timetable'],
-        // ])->firstOrFail();
+        $band = $this->Bands->find('bySlug', ['slug' => $slug])->firstOrFail();
 
         $this->set('band', $band);
     }
@@ -68,12 +66,9 @@ class BandsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($slug = null)
+    public function edit($slug)
     {
-        $band = $this->Bands->findBySlug($slug)->firstOrFail();
-        // $band = $this->Bands->findBySlug($slug, [
-        //     'contain' => [],
-        // ])->firstOrFail();
+        $band = $this->Bands->find('bySlug', ['slug' => $slug])->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $band = $this->Bands->patchEntity($band, $this->request->getData());
             if ($this->Bands->save($band)) {
@@ -93,10 +88,10 @@ class BandsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($slug = null)
+    public function delete($slug)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $band = $this->Bands->findBySlug($slug)->firstOrFail();
+        $band = $this->Bands->find('bySlug', ['slug' => $slug])->firstOrFail();
         if ($this->Bands->delete($band)) {
             $this->Flash->success(__('The band has been deleted.'));
         } else {

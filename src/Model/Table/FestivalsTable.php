@@ -79,7 +79,7 @@ class FestivalsTable extends Table
         $validator
             ->scalar('slug')
             ->maxLength('slug', 191)
-            ->requirePresence('slug', 'create')
+            //->requirePresence('slug', 'create')
             ->notEmptyString('slug')
             ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
@@ -111,5 +111,11 @@ class FestivalsTable extends Table
             // trim slug to maximum length defined in schema
             $entity->slug = substr($sluggedTitle, 0, 191);
         }
+    }
+
+    public function findBySlug(Query $query, array $options)
+    {
+        $slug = $options['slug'];
+        return $query->where(['slug' => $slug])->contain(['Dates', 'Stages', 'Tickets', 'Timetable']);
     }
 }

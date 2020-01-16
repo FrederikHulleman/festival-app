@@ -5,27 +5,25 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\Utility\Text;
 
 /**
- * Dates Model
+ * Stages Model
  *
  * @property \App\Model\Table\FestivalsTable&\Cake\ORM\Association\BelongsTo $Festivals
- * @property \App\Model\Table\TicketsTable&\Cake\ORM\Association\HasMany $Tickets
  * @property \App\Model\Table\TimetableTable&\Cake\ORM\Association\HasMany $Timetable
  *
- * @method \App\Model\Entity\Date get($primaryKey, $options = [])
- * @method \App\Model\Entity\Date newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Date[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Date|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Date saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Date patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Date[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Date findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Stage get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Stage newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Stage[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Stage|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Stage saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Stage patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Stage[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Stage findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class DatesTable extends Table
+class StagesTable extends Table
 {
     /**
      * Initialize method
@@ -37,8 +35,8 @@ class DatesTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('dates');
-        $this->setDisplayField('id');
+        $this->setTable('stages');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -47,11 +45,8 @@ class DatesTable extends Table
             'foreignKey' => 'festival_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('Tickets', [
-            'foreignKey' => 'date_id',
-        ]);
         $this->hasMany('Timetable', [
-            'foreignKey' => 'date_id',
+            'foreignKey' => 'stage_id',
         ]);
     }
 
@@ -68,21 +63,17 @@ class DatesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+            ->scalar('name')
+            ->maxLength('name', 255)
+            ->requirePresence('name', 'create')
+            ->notEmptyString('name');
+
+        $validator
             ->scalar('slug')
-            ->maxLength('slug', 10)
+            ->maxLength('slug', 191)
             //->requirePresence('slug', 'create')
             ->notEmptyString('slug')
             ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
-        $validator
-            ->dateTime('starttime')
-            ->requirePresence('starttime', 'create')
-            ->notEmptyDateTime('starttime');
-
-        $validator
-            ->dateTime('endtime')
-            ->requirePresence('endtime', 'create')
-            ->notEmptyDateTime('endtime');
 
         return $validator;
     }
@@ -105,13 +96,15 @@ class DatesTable extends Table
     public function beforeSave($event, $entity, $options)
     {
         if ($entity->isNew() && !$entity->slug) {
-            $entity->slug = date_format($entity->starttime,"Y-m-d");
+            $slug = Text::slug($entity->name);
+            // trim slug to maximum length defined in schema
+            $entity->slug = substr($slug, 0, 191);
         }
     }
 
     public function findBySlug(Query $query, array $options)
     {
         $slug = $options['slug'];
-        return $query->where(['slug' => $slug])->contain(['Festivals', 'Tickets', 'Timetable']);
+        return $query->where(['slug' => $slug])->contain(['Festivals', 'Timetable']);
     }
 }

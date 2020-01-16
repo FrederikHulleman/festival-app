@@ -4,18 +4,23 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Band Entity
+ * Timetable Entity
  *
- * @property int $id
- * @property string $name
- * @property string $slug
- * @property string|null $description
+ * @property int $band_id
+ * @property int $festival_id
+ * @property int $date_id
+ * @property int $stage_id
+ * @property string $starttime
+ * @property string $endtime
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
- * @property \App\Model\Entity\Timetable[] $timetable
+ * @property \App\Model\Entity\Band $band
+ * @property \App\Model\Entity\Festival $festival
+ * @property \App\Model\Entity\Date $date
+ * @property \App\Model\Entity\Stage $stage
  */
-class Band extends Entity
+class Timetable extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -27,11 +32,13 @@ class Band extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'slug' => false,
-        'description' => true,
+        'starttime' => true,
+        'endtime' => true,
         'created' => true,
         'modified' => true,
-        'timetable' => true,
+        'band' => true,
+        'festival' => true,
+        'date' => true,
+        'stage' => true,
     ];
 }
