@@ -17,9 +17,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('slug') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -28,15 +26,13 @@
         <tbody>
             <?php foreach ($bands as $band): ?>
             <tr>
-                <td><?= $this->Number->format($band->id) ?></td>
                 <td><?= h($band->name) ?></td>
-                <td><?= h($band->slug) ?></td>
                 <td><?= h($band->created) ?></td>
                 <td><?= h($band->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $band->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $band->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $band->id], ['confirm' => __('Are you sure you want to delete # {0}?', $band->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $band->slug]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $band->slug]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $band->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $band->slug)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

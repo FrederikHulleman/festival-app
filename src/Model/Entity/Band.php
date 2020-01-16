@@ -32,6 +32,6 @@ class Band extends Entity
         'description' => true,
         'created' => true,
         'modified' => true,
-        'timetable' => true,
+        //'timetable' => true,
     ];
 }

@@ -9,8 +9,8 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $band->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $band->id)]
+                ['action' => 'delete', $band->slug],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $band->slug)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Bands'), ['action' => 'index']) ?></li>
@@ -24,7 +24,6 @@
         <legend><?= __('Edit Band') ?></legend>
         <?php
             echo $this->Form->control('name');
-            echo $this->Form->control('slug');
             echo $this->Form->control('description');
         ?>
     </fieldset>

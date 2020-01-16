@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
 
 /**
  * Bands Model
@@ -40,9 +41,9 @@ class BandsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('Timetable', [
-            'foreignKey' => 'band_id',
-        ]);
+        // $this->hasMany('Timetable', [
+        //     'foreignKey' => 'band_id',
+        // ]);
     }
 
     /**
@@ -63,12 +64,12 @@ class BandsTable extends Table
             ->requirePresence('name', 'create')
             ->notEmptyString('name');
 
-        $validator
-            ->scalar('slug')
-            ->maxLength('slug', 191)
-            ->requirePresence('slug', 'create')
-            ->notEmptyString('slug')
-            ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+        // $validator
+        //     ->scalar('slug')
+        //     ->maxLength('slug', 191)
+        //     ->requirePresence('slug', 'create')
+        //     ->notEmptyString('slug')
+        //     ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('description')
@@ -84,12 +85,12 @@ class BandsTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->isUnique(['slug']));
+    // public function buildRules(RulesChecker $rules)
+    // {
+    //     $rules->add($rules->isUnique(['slug']));
 
-        return $rules;
-    }
+    //     return $rules;
+    // }
 
     public function beforeSave($event, $entity, $options)
     {

@@ -18,7 +18,6 @@
         <legend><?= __('Add Band') ?></legend>
         <?php
             echo $this->Form->control('name');
-            echo $this->Form->control('slug');
             echo $this->Form->control('description');
         ?>
     </fieldset>

@@ -7,8 +7,8 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Band'), ['action' => 'edit', $band->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Band'), ['action' => 'delete', $band->id], ['confirm' => __('Are you sure you want to delete # {0}?', $band->id)]) ?> </li>
+        <li><?= $this->Html->link(__('Edit Band'), ['action' => 'edit', $band->slug]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Band'), ['action' => 'delete', $band->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $band->slug)]) ?> </li>
         <li><?= $this->Html->link(__('List Bands'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Band'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Timetable'), ['controller' => 'Timetable', 'action' => 'index']) ?> </li>
@@ -21,14 +21,6 @@
         <tr>
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($band->name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Slug') ?></th>
-            <td><?= h($band->slug) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($band->id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
