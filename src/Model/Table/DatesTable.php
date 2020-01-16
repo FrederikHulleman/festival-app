@@ -38,7 +38,7 @@ class DatesTable extends Table
         parent::initialize($config);
 
         $this->setTable('dates');
-        $this->setDisplayField('id');
+        $this->setDisplayField('slug');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

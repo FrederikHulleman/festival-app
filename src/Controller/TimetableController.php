@@ -34,7 +34,7 @@ class TimetableController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($id)
     {
         $timetable = $this->Timetable->get($id, [
             'contain' => ['Bands', 'Festivals', 'Dates', 'Stages'],
@@ -74,7 +74,7 @@ class TimetableController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($id)
     {
         $timetable = $this->Timetable->get($id, [
             'contain' => [],
@@ -102,7 +102,7 @@ class TimetableController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id)
     {
         $this->request->allowMethod(['post', 'delete']);
         $timetable = $this->Timetable->get($id);

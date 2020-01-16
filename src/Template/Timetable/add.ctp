@@ -25,6 +25,10 @@
         <?php
             echo $this->Form->control('starttime');
             echo $this->Form->control('endtime');
+            echo $this->Form->control('festivals._ids', ['options' => $festivals]);
+            echo $this->Form->control('dates._ids', ['options' => $dates]);
+            echo $this->Form->control('bands._ids', ['options' => $bands]);
+            echo $this->Form->control('stages._ids', ['options' => $stages]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
