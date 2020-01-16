@@ -116,6 +116,6 @@ class FestivalsTable extends Table
     public function findBySlug(Query $query, array $options)
     {
         $slug = $options['slug'];
-        return $query->where(['slug' => $slug])->contain(['Dates', 'Stages', 'Tickets', 'Timetable']);
+        return $query->where(['festivals.slug' => $slug])->contain(['Dates', 'Stages', 'Tickets', 'Timetable']);
     }
 }

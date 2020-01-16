@@ -104,6 +104,6 @@ class BandsTable extends Table
     public function findBySlug(Query $query, array $options)
     {
         $slug = $options['slug'];
-        return $query->where(['slug' => $slug])->contain(['Timetable']);
+        return $query->where(['bands.slug' => $slug])->contain(['Timetable']);
     }
 }

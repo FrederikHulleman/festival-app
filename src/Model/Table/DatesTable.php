@@ -112,6 +112,6 @@ class DatesTable extends Table
     public function findBySlug(Query $query, array $options)
     {
         $slug = $options['slug'];
-        return $query->where(['slug' => $slug])->contain(['Festivals', 'Tickets', 'Timetable']);
+        return $query->where(['dates.slug' => $slug])->contain(['Festivals', 'Tickets', 'Timetable']);
     }
 }

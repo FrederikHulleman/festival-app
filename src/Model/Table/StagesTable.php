@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
 
 /**
  * Stages Model
@@ -105,6 +106,6 @@ class StagesTable extends Table
     public function findBySlug(Query $query, array $options)
     {
         $slug = $options['slug'];
-        return $query->where(['slug' => $slug])->contain(['Festivals', 'Timetable']);
+        return $query->where(['stages.slug' => $slug])->contain(['Festivals', 'Timetable']);
     }
 }
