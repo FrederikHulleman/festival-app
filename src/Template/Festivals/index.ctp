@@ -40,9 +40,9 @@
                 <td><?= h($festival->created) ?></td>
                 <td><?= h($festival->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $festival->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $festival->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $festival->id], ['confirm' => __('Are you sure you want to delete # {0}?', $festival->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $festival->slug]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $festival->slug]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $festival->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $festival->slug)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

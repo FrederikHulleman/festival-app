@@ -38,9 +38,9 @@
                 <td><?= h($stage->created) ?></td>
                 <td><?= h($stage->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $stage->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $stage->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $stage->id], ['confirm' => __('Are you sure you want to delete # {0}?', $stage->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $stage->slug]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $stage->slug]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $stage->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $stage->slug)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

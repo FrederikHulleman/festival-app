@@ -9,8 +9,8 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $festival->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $festival->id)]
+                ['action' => 'delete', $festival->slug],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $festival->slug)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Festivals'), ['action' => 'index']) ?></li>

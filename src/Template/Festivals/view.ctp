@@ -7,8 +7,8 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Festival'), ['action' => 'edit', $festival->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Festival'), ['action' => 'delete', $festival->id], ['confirm' => __('Are you sure you want to delete # {0}?', $festival->id)]) ?> </li>
+        <li><?= $this->Html->link(__('Edit Festival'), ['action' => 'edit', $festival->slug]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Festival'), ['action' => 'delete', $festival->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $festival->slug)]) ?> </li>
         <li><?= $this->Html->link(__('List Festivals'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Festival'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Dates'), ['controller' => 'Dates', 'action' => 'index']) ?> </li>
