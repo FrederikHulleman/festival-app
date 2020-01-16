@@ -34,12 +34,9 @@ class DatesController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($slug = null)
+    public function view($slug)
     {
-        $date = $this->Dates->findBySlug($slug)->firstOrFail();
-        // $date = $this->Dates->findBySlug($slug, [
-        //     'contain' => ['Festivals', 'Tickets', 'Timetable'],
-        // ])->firstOrFail();
+        $date = $this->Dates->find('bySlug', ['slug' => $slug])->firstOrFail();
 
         $this->set('date', $date);
     }
@@ -72,12 +69,10 @@ class DatesController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($slug = null)
+    public function edit($slug)
     {
-        $date = $this->Dates->findBySlug($slug)->firstOrFail();
-        // $date = $this->Dates->findBySlug($slug, [
-        //     'contain' => [],
-        // ])->firstOrFail();
+        $date = $this->Dates->find('bySlug', ['slug' => $slug])->firstOrFail();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $date = $this->Dates->patchEntity($date, $this->request->getData());
             if ($this->Dates->save($date)) {
@@ -98,10 +93,10 @@ class DatesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($slug = null)
+    public function delete($slug)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $date = $this->Dates->findBySlug($slug)->firstOrFail();
+        $date = $this->Dates->find('bySlug', ['slug' => $slug])->firstOrFail();
         if ($this->Dates->delete($date)) {
             $this->Flash->success(__('The date has been deleted.'));
         } else {

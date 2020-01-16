@@ -31,12 +31,9 @@ class FestivalsController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($slug = null)
+    public function view($slug)
     {
-        $festival = $this->Festivals->findBySlug($slug)->firstOrFail();
-        // $festival = $this->Festivals->findBySlug($slug, [
-        //     'contain' => ['Dates', 'Stages', 'Tickets', 'Timetable'],
-        // ])->firstOrFail();
+        $festival = $this->Festivals->find('bySlug', ['slug' => $slug])->firstOrFail();
 
         $this->set('festival', $festival);
     }
@@ -68,12 +65,10 @@ class FestivalsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($slug = null)
+    public function edit($slug)
     {
-        $festival = $this->Festivals->findBySlug($slug)->firstOrFail();
-        // $festival = $this->Festivals->findBySlug($slug, [
-        //     'contain' => [],
-        // ])->firstOrFail();
+        $festival = $this->Festivals->find('bySlug', ['slug' => $slug])->firstOrFail();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $festival = $this->Festivals->patchEntity($festival, $this->request->getData());
             if ($this->Festivals->save($festival)) {
@@ -93,10 +88,10 @@ class FestivalsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($slug = null)
+    public function delete($slug)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $festival = $this->Festivals->findBySlug($slug)->firstOrFail();
+        $festival = $this->Festivals->find('bySlug', ['slug' => $slug])->firstOrFail();
         if ($this->Festivals->delete($festival)) {
             $this->Flash->success(__('The festival has been deleted.'));
         } else {

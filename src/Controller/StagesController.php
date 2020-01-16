@@ -34,11 +34,9 @@ class StagesController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($slug)
     {
-        $stage = $this->Stages->get($id, [
-            'contain' => ['Festivals', 'Timetable'],
-        ]);
+        $stage = $this->Stages->find('bySlug', ['slug' => $slug])->firstOrFail();
 
         $this->set('stage', $stage);
     }
@@ -71,11 +69,9 @@ class StagesController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($slug)
     {
-        $stage = $this->Stages->get($id, [
-            'contain' => [],
-        ]);
+        $stage = $this->Stages->find('bySlug', ['slug' => $slug])->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $stage = $this->Stages->patchEntity($stage, $this->request->getData());
             if ($this->Stages->save($stage)) {
@@ -96,10 +92,10 @@ class StagesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($slug)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $stage = $this->Stages->get($id);
+        $stage = $this->Stages->find('bySlug', ['slug' => $slug])->firstOrFail();
         if ($this->Stages->delete($stage)) {
             $this->Flash->success(__('The stage has been deleted.'));
         } else {
