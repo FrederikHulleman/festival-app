@@ -29,10 +29,6 @@
             <td><?= h($festival->title) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Slug') ?></th>
-            <td><?= h($festival->slug) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($festival->id) ?></td>
         </tr>
@@ -88,7 +84,6 @@
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Festival Id') ?></th>
                 <th scope="col"><?= __('Name') ?></th>
-                <th scope="col"><?= __('Slug') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -98,7 +93,6 @@
                 <td><?= h($stages->id) ?></td>
                 <td><?= h($stages->festival_id) ?></td>
                 <td><?= h($stages->name) ?></td>
-                <td><?= h($stages->slug) ?></td>
                 <td><?= h($stages->created) ?></td>
                 <td><?= h($stages->modified) ?></td>
                 <td class="actions">

@@ -29,10 +29,6 @@
             <td><?= h($stage->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Slug') ?></th>
-            <td><?= h($stage->slug) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($stage->id) ?></td>
         </tr>

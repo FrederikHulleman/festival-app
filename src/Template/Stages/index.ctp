@@ -22,7 +22,6 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('festival_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('slug') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -34,7 +33,6 @@
                 <td><?= $this->Number->format($stage->id) ?></td>
                 <td><?= $stage->has('festival') ? $this->Html->link($stage->festival->title, ['controller' => 'Festivals', 'action' => 'view', $stage->festival->id]) : '' ?></td>
                 <td><?= h($stage->name) ?></td>
-                <td><?= h($stage->slug) ?></td>
                 <td><?= h($stage->created) ?></td>
                 <td><?= h($stage->modified) ?></td>
                 <td class="actions">

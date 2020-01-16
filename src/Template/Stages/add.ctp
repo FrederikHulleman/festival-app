@@ -21,7 +21,6 @@
         <?php
             echo $this->Form->control('festival_id', ['options' => $festivals]);
             echo $this->Form->control('name');
-            echo $this->Form->control('slug');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

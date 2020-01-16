@@ -25,7 +25,6 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('slug') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -36,7 +35,6 @@
             <tr>
                 <td><?= $this->Number->format($festival->id) ?></td>
                 <td><?= h($festival->title) ?></td>
-                <td><?= h($festival->slug) ?></td>
                 <td><?= h($festival->created) ?></td>
                 <td><?= h($festival->modified) ?></td>
                 <td class="actions">

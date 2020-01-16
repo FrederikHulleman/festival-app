@@ -30,7 +30,6 @@
         <legend><?= __('Edit Festival') ?></legend>
         <?php
             echo $this->Form->control('title');
-            echo $this->Form->control('slug');
             echo $this->Form->control('description');
         ?>
     </fieldset>
