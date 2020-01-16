@@ -35,7 +35,7 @@ class BandsController extends AppController
     {
         $band = $this->Bands->findBySlug($slug, [
             'contain' => ['Timetable'],
-        ]);
+        ])->firstOrFail();
 
         $this->set('band', $band);
     }

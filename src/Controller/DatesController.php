@@ -34,11 +34,11 @@ class DatesController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($slug = null)
     {
-        $date = $this->Dates->get($id, [
+        $date = $this->Dates->findBySlug($slug, [
             'contain' => ['Festivals', 'Tickets', 'Timetable'],
-        ]);
+        ])->firstOrFail();
 
         $this->set('date', $date);
     }
@@ -71,11 +71,11 @@ class DatesController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($slug = null)
     {
-        $date = $this->Dates->get($id, [
+        $date = $this->Dates->findBySlug($slug, [
             'contain' => [],
-        ]);
+        ])->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $date = $this->Dates->patchEntity($date, $this->request->getData());
             if ($this->Dates->save($date)) {
@@ -96,10 +96,10 @@ class DatesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($slug = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $date = $this->Dates->get($id);
+        $date = $this->Dates->findBySlug($slug)->firstOrFail();
         if ($this->Dates->delete($date)) {
             $this->Flash->success(__('The date has been deleted.'));
         } else {

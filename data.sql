@@ -25,10 +25,12 @@ CREATE TABLE festivals (
 CREATE TABLE dates (
     id INT AUTO_INCREMENT PRIMARY KEY,
     festival_id INT NOT NULL,
+    slug VARCHAR(10) NOT NULL,
     starttime DATETIME NOT NULL, 
     endtime DATETIME NOT NULL,
     created DATETIME,
     modified DATETIME,
+    UNIQUE KEY (slug),
     FOREIGN KEY festival_key (festival_id) REFERENCES festivals(id)
 )  CHARSET=utf8mb4;
 
@@ -108,6 +110,6 @@ INSERT INTO bands (name, slug, description, created, modified) VALUES
 ('RPO', 'RPO', 'Best orchestra of Rotterdam', NOW(),NOW()),
 ('Radio Philharmonisch Orkest', 'Radio-Philharmonisch-Orkest', 'Beautiful orchestra often performs on TV and radio live recordings.', NOW(),NOW());
 
-INSERT INTO dates (festival_id, starttime, endtime, created, modified) VALUES
-(1, '2020-07-04 14:00:00', '2020-07-04 23:00:00', NOW(),NOW()),
-(1, '2020-07-05 14:00:00', '2020-07-05 23:00:00', NOW(),NOW());
+INSERT INTO dates (festival_id, slug, starttime, endtime, created, modified) VALUES
+(1, '2020-07-04', '2020-07-04 14:00:00', '2020-07-04 23:00:00', NOW(),NOW()),
+(1, '2020-07-05', '2020-07-05 14:00:00', '2020-07-05 23:00:00', NOW(),NOW());
