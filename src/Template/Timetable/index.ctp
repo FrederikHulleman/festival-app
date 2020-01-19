@@ -9,15 +9,15 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('band_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('date_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('stage_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('band_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('date_slug') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('stage_slug') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('starttime') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('endtime') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($timetable as $timetable): ?>
+            <?php foreach ($timetable_grouped_by_date as $timetable): ?>
             <tr>
                 <td><?= $timetable->has('band') ? $this->Html->link($timetable->band->name, ['controller' => 'Bands', 'action' => 'view', $timetable->band->slug]) : '' ?></td>
                 <td><?= h($timetable->date->slug) ?></td>

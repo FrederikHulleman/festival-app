@@ -24,7 +24,12 @@ class TimetableController extends AppController
         ];
         $timetable = $this->paginate($this->Timetable);
 
-        $this->set(compact('timetable'));
+        $timetable_grouped_by_date = array();
+        foreach ($timetable as $element) {
+            $timetable_grouped_by_date[$element['date_id']][] = $element;
+        }
+
+        $this->set(compact('timetable_grouped_by_date'));
     }
 
     /**
