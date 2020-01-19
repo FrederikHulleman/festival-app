@@ -4,13 +4,6 @@
  * @var \App\Model\Entity\Festival $festival
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li><?= $this->Html->link(__('Order Ticket'), ['controller' => 'Tickets', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('View Bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('View Timetable'), ['controller' => 'Timetable', 'action' => 'index']) ?> </li>
-    </ul>
-</nav>
 <div class="festivals view large-9 medium-8 columns content">
     <h3>VISITOR PAGE <?= h($festival->title) ?></h3>
     <div class="row">
