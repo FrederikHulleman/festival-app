@@ -11,7 +11,7 @@ use Cake\Utility\Text;
  * Stages Model
  *
  * @property \App\Model\Table\FestivalsTable&\Cake\ORM\Association\BelongsTo $Festivals
- * @property \App\Model\Table\TimetableTable&\Cake\ORM\Association\HasMany $Timetable
+ * @property \App\Model\Table\Timetablestable&\Cake\ORM\Association\HasMany $Timetables
  *
  * @method \App\Model\Entity\Stage get($primaryKey, $options = [])
  * @method \App\Model\Entity\Stage newEntity($data = null, array $options = [])
@@ -46,7 +46,7 @@ class StagesTable extends Table
             'foreignKey' => 'festival_id',
             'joinType' => 'INNER',
         ]);
-        $this->hasMany('Timetable', [
+        $this->hasMany('Timetables', [
             'foreignKey' => 'stage_id',
         ]);
     }

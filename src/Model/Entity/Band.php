@@ -13,7 +13,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
- * @property \App\Model\Entity\Timetable[] $timetable
+ * @property \App\Model\Entity\Timetable[] $timetables
  */
 class Band extends Entity
 {
@@ -32,6 +32,6 @@ class Band extends Entity
         'description' => true,
         'created' => true,
         'modified' => true,
-        'timetable' => true,
+        'timetables' => true,
     ];
 }

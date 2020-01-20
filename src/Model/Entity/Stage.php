@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  *
  * @property \App\Model\Entity\Festival $festival
- * @property \App\Model\Entity\Timetable[] $timetable
+ * @property \App\Model\Entity\Timetable[] $timetables
  */
 class Stage extends Entity
 {
@@ -34,6 +34,6 @@ class Stage extends Entity
         'created' => true,
         'modified' => true,
         'festival' => true,
-        'timetable' => true,
+        'timetables' => true,
     ];
 }

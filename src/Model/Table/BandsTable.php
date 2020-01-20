@@ -10,7 +10,7 @@ use Cake\Utility\Text;
 /**
  * Bands Model
  *
- * @property \App\Model\Table\TimetableTable&\Cake\ORM\Association\HasMany $Timetable
+ * @property \App\Model\Table\Timetablestable&\Cake\ORM\Association\HasMany $Timetables
  *
  * @method \App\Model\Entity\Band get($primaryKey, $options = [])
  * @method \App\Model\Entity\Band newEntity($data = null, array $options = [])
@@ -41,7 +41,7 @@ class BandsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('Timetable', [
+        $this->hasMany('Timetables', [
             'foreignKey' => 'band_id',
         ]);
     }
@@ -104,6 +104,6 @@ class BandsTable extends Table
     public function findBySlug(Query $query, array $options)
     {
         $slug = $options['slug'];
-        return $query->where(['bands.slug' => $slug])->contain(['Timetable']);
+        return $query->where(['bands.slug' => $slug])->contain(['Timetables']);
     }
 }

@@ -17,15 +17,19 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($timetables_grouped_by_date as $timetable): 
-                //debug($timetable) ?>
+            <?php foreach ($timetables as $key => $items): ?>
             <tr>
-                <td><?= $timetable->has('band') ? $this->Html->link($timetable->band->name, ['controller' => 'Bands', 'action' => 'view', $timetable->band->slug]) : '' ?></td>
-                <td><?= h($timetable->date->slug) ?></td>
-                <td><?= h($timetable->stage->name) ?></td>
-                <td><?= h($timetable->starttime) ?></td>
-                <td><?= h($timetable->endtime) ?></td>
+                <td><?= $key ?></td>
             </tr>
+                <?php foreach ($items as $timetable): ?>
+                <tr>
+                    <td><?= $timetable->has('band') ? $this->Html->link($timetable->band->name, ['controller' => 'Bands', 'action' => 'view', $timetable->band->slug]) : '' ?></td>
+                    <td><?= h($timetable->date->slug) ?></td>
+                    <td><?= h($timetable->stage->name) ?></td>
+                    <td><?= h($timetable->starttime) ?></td>
+                    <td><?= h($timetable->endtime) ?></td>
+                </tr>
+                <?php endforeach; ?>
             <?php endforeach; ?>
         </tbody>
     </table>

@@ -54,7 +54,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <ul class="side-nav">
                 <li><?= $this->Html->link(__('Order Ticket'), ['controller' => 'Tickets', 'action' => 'add']) ?> </li>
                 <li><?= $this->Html->link(__('Bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
-                <li><?= $this->Html->link(__('Timetables'), ['controller' => 'Timetable', 'action' => 'index']) ?> </li>
+                <li><?= $this->Html->link(__('Timetables'), ['controller' => 'Timetables', 'action' => 'index']) ?> </li>
             </ul>
         </nav>
         <?= $this->fetch('content') ?>

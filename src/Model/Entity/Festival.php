@@ -16,7 +16,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Date[] $dates
  * @property \App\Model\Entity\Stage[] $stages
  * @property \App\Model\Entity\Ticket[] $tickets
- * @property \App\Model\Entity\Timetable[] $timetable
+ * @property \App\Model\Entity\Timetable[] $timetables
  */
 class Festival extends Entity
 {
@@ -38,6 +38,6 @@ class Festival extends Entity
         'dates' => true,
         'stages' => true,
         'tickets' => true,
-        'timetable' => true,
+        'timetables' => true,
     ];
 }

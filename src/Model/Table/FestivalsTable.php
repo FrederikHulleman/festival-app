@@ -13,7 +13,7 @@ use Cake\Utility\Text;
  * @property \App\Model\Table\DatesTable&\Cake\ORM\Association\HasMany $Dates
  * @property \App\Model\Table\StagesTable&\Cake\ORM\Association\HasMany $Stages
  * @property \App\Model\Table\TicketsTable&\Cake\ORM\Association\HasMany $Tickets
- * @property \App\Model\Table\TimetableTable&\Cake\ORM\Association\HasMany $Timetable
+ * @property \App\Model\Table\Timetablestable&\Cake\ORM\Association\HasMany $Timetables
  *
  * @method \App\Model\Entity\Festival get($primaryKey, $options = [])
  * @method \App\Model\Entity\Festival newEntity($data = null, array $options = [])
@@ -53,7 +53,7 @@ class FestivalsTable extends Table
         $this->hasMany('Tickets', [
             'foreignKey' => 'festival_id',
         ]);
-        $this->hasMany('Timetable', [
+        $this->hasMany('Timetables', [
             'foreignKey' => 'festival_id',
         ]);
     }
@@ -116,6 +116,6 @@ class FestivalsTable extends Table
     public function findBySlug(Query $query, array $options)
     {
         $slug = $options['slug'];
-        return $query->where(['festivals.slug' => $slug])->contain(['Dates', 'Stages', 'Tickets', 'Timetable']);
+        return $query->where(['festivals.slug' => $slug])->contain(['Dates', 'Stages', 'Tickets', 'Timetables']);
     }
 }
