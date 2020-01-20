@@ -25,74 +25,45 @@ class TimetablesController extends AppController
         $query = $this->Festivals->find('all');
         $festival = $query->firstOrFail();
 
-        //debug($timetables_raw);
-
-        //group all existing timetable entries by date & starttime 
-        // $timetables_group_by_date_starttime = array();
-        // foreach ($timetables_raw as $key => $element) {
-        //     //$timetables_group_by_date_starttime[$element->date_id]['date'] = $element->date->date;
-        //     $timetables_group_by_date_starttime[$element->date_id][$key] = [
-        //                                                                 'starttime' => $element->starttime,
-        //                                                                 //$element
-        //                                                             ];
-        // }
-        //debug($timetables_group_by_date_starttime);
-
         //to generate the full timetable for the festival dates, retrieve the dates model and it's properties
         $this->loadModel('Dates');
-        $query = $this->Dates->find('all')->where(['dates.festival_id' => $festival->id]);
+        $query = $this->Dates->find('all')
+                                ->where(['dates.festival_id' => $festival->id])
+                                ->order(['dates.date' => 'ASC']);
         $all_festival_dates = $query->all();
 
-        //debug($timetables_group_by_date_starttime[1]);
-        //debug($timetables_group_by_date_starttime[2]);
-
+        //loop through each date, and for each date, loop through each hour (from starttime to endtime)
+        //and in case a band is planned on a certain date and starttime, add the details to the timetables array
+        //in case no band is planned, only the 
         $timetables = array();
         $starttimes_with_bands = array();
         foreach($all_festival_dates as $date) {
             $timetables[$date->id]['date'] = $date->date;
             
             $query = $this->Timetables->find('all')
-                            //->contain(['Bands', 'Festivals', 'Dates', 'Stages'])
+                            ->contain(['Bands', 'Festivals', 'Dates', 'Stages'])
                             ->where(['timetables.festival_id' => $festival->id,'timetables.date_id' => $date->id])
-                            //->order(['timetables.date_id' => 'ASC','timetables.starttime' => 'ASC'])
+                            ->order(['timetables.date_id' => 'ASC','timetables.starttime' => 'ASC'])
                             ;
-            $timetables_with_bands = $query->all()->toArray();    
-            //debug($timetables_raw);
+            $timeslots_with_planned_bands = $query->all();    
+            $timeslots_with_planned_bands_array = $timeslots_with_planned_bands->toArray();
             
-            $starttimes_with_bands = array_column($timetables_with_bands, 'starttime');
-            //debug($starttimes_with_bands);
+            $starttimes_with_planned_bands = array_column($timeslots_with_planned_bands_array, 'starttime');
             
             $i = $date->starttime;
             while($i<$date->endtime) {
-                //$full_time_table[$date->id]['date'] = $date->date;
                 
-                // debug($i);
-                $key = array_search($i,$starttimes_with_bands);
+                //check whether for this hour ($i) a band is scheduled
+                $key = array_search($i,$starttimes_with_planned_bands);
                 if($key !== FALSE) {
-                    $timetables[$date->id][] = [
-                        'starttime' => $i,
-                        $timetables_with_bands[$key]
-                    ];
-                    //$full_time_table[$date->id][] = ['starttime' => $i,$timetables_group_by_date_starttime[$date->id][$key]];
-                    //debug("found");
-                    // debug($date);
-                    // debug($i);
-                    // debug($key);
-                    // debug($timetables_group_by_date_starttime[$date->id][$key]);
-                    // debug("end");
+                    $timetables[$date->id][] = $timeslots_with_planned_bands_array[$key];
                 }
                 else {
-                    $timetables[$date->id][] = [
-                        'starttime' => $i
-                    ];
+                    $timetables[$date->id][]['starttime'] = $i;
                 }
-
-                
-
                 $i = $i->modify("+1 hour");
             }
         }
-        debug($timetables);
         $this->set(compact('timetables')); 
     }
     

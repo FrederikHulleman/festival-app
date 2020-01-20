@@ -21,7 +21,7 @@ class BandsController extends AppController
     public function index()
     {
         $bands = $this->paginate($this->Bands);
-
+        
         $this->set(compact('bands'));
     }
 
