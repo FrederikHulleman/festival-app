@@ -1,16 +1,16 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\TimetableController;
+use App\Controller\TimetablesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\TimetableController Test Case
+ * App\Controller\TimetablesController Test Case
  *
- * @uses \App\Controller\TimetableController
+ * @uses \App\Controller\TimetablesController
  */
-class TimetableControllerTest extends TestCase
+class TimetablesControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 

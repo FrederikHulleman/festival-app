@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\TimetableTable;
+use App\Model\Table\TimetablesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\TimetableTable Test Case
+ * App\Model\Table\TimetablesTable Test Case
  */
-class TimetableTableTest extends TestCase
+class TimetablesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\TimetableTable
+     * @var \App\Model\Table\TimetablesTable
      */
-    public $Timetable;
+    public $Timetables;
 
     /**
      * Fixtures
@@ -23,7 +23,7 @@ class TimetableTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Timetable',
+        'app.Timetables',
         'app.Bands',
         'app.Festivals',
         'app.Dates',
@@ -38,8 +38,8 @@ class TimetableTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Timetable') ? [] : ['className' => TimetableTable::class];
-        $this->Timetable = TableRegistry::getTableLocator()->get('Timetable', $config);
+        $config = TableRegistry::getTableLocator()->exists('Timetables') ? [] : ['className' => TimetablesTable::class];
+        $this->Timetables = TableRegistry::getTableLocator()->get('Timetables', $config);
     }
 
     /**
@@ -49,7 +49,7 @@ class TimetableTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Timetable);
+        unset($this->Timetables);
 
         parent::tearDown();
     }
