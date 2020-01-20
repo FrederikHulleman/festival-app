@@ -25,7 +25,7 @@ CREATE TABLE festivals (
 CREATE TABLE dates (
     id INT AUTO_INCREMENT PRIMARY KEY,
     festival_id INT NOT NULL,
-    slug VARCHAR(10) NOT NULL,
+    slug DATE NOT NULL,
     starttime DATETIME NOT NULL, 
     endtime DATETIME NOT NULL,
     created DATETIME,

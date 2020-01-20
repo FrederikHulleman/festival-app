@@ -70,16 +70,14 @@ class TimetablesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->scalar('starttime')
-            ->maxLength('starttime', 5)
+            ->time('starttime')
             ->requirePresence('starttime', 'create')
-            ->notEmptyString('starttime');
+            ->notEmptyTime('starttime');
 
         $validator
-            ->scalar('endtime')
-            ->maxLength('endtime', 5)
+            ->time('endtime')
             ->requirePresence('endtime', 'create')
-            ->notEmptyString('endtime');
+            ->notEmptyTime('endtime');
 
         return $validator;
     }

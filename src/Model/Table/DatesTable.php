@@ -75,14 +75,19 @@ class DatesTable extends Table
             ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->dateTime('starttime')
+            ->date('date')
+            ->requirePresence('date', 'create')
+            ->notEmptyDate('date');
+            
+        $validator
+            ->time('starttime')
             ->requirePresence('starttime', 'create')
-            ->notEmptyDateTime('starttime');
+            ->notEmptyTime('starttime');
 
         $validator
-            ->dateTime('endtime')
+            ->time('endtime')
             ->requirePresence('endtime', 'create')
-            ->notEmptyDateTime('endtime');
+            ->notEmptyTime('endtime');
 
         return $validator;
     }

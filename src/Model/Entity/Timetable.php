@@ -10,8 +10,8 @@ use Cake\ORM\Entity;
  * @property int $festival_id
  * @property int $date_id
  * @property int $stage_id
- * @property string $starttime
- * @property string $endtime
+ * @property \Cake\I18n\FrozenTime $starttime
+ * @property \Cake\I18n\FrozenTime $endtime
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
