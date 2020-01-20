@@ -4,13 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Timetable Controller
+ * Timetables Controller
  *
- * @property \App\Model\Table\TimetableTable $Timetable
+ * @property \App\Model\Table\TimetablesTable $Timetables
  *
  * @method \App\Model\Entity\Timetable[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class TimetableController extends AppController
+class TimetablesController extends AppController
 {
     /**
      * Index method
@@ -22,30 +22,14 @@ class TimetableController extends AppController
         $this->paginate = [
             'contain' => ['Bands', 'Festivals', 'Dates', 'Stages'],
         ];
-        $timetable = $this->paginate($this->Timetable);
+        $timetables = $this->paginate($this->Timetables);
 
-        $timetable_grouped_by_date = array();
-        foreach ($timetable as $element) {
-            $timetable_grouped_by_date[$element['date_id']][] = $element;
+        $timetables_grouped_by_date = array();
+        foreach ($timetables as $element) {
+            $timetables_grouped_by_date[$element['date_id']][] = $element;
         }
-
-        $this->set(compact('timetable_grouped_by_date'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Timetable id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id)
-    {
-        $timetable = $this->Timetable->get($id, [
-            'contain' => ['Bands', 'Festivals', 'Dates', 'Stages'],
-        ]);
-
-        $this->set('timetable', $timetable);
+        debug($timetables_grouped_by_date);
+        $this->set(compact('timetables_grouped_by_date'));
     }
 
     /**
@@ -55,20 +39,20 @@ class TimetableController extends AppController
      */
     public function add()
     {
-        $timetable = $this->Timetable->newEntity();
+        $timetable = $this->Timetables->newEntity();
         if ($this->request->is('post')) {
-            $timetable = $this->Timetable->patchEntity($timetable, $this->request->getData());
-            if ($this->Timetable->save($timetable)) {
+            $timetable = $this->Timetables->patchEntity($timetable, $this->request->getData());
+            if ($this->Timetables->save($timetable)) {
                 $this->Flash->success(__('The timetable has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The timetable could not be saved. Please, try again.'));
         }
-        $bands = $this->Timetable->Bands->find('list', ['limit' => 200]);
-        $festivals = $this->Timetable->Festivals->find('list', ['limit' => 200]);
-        $dates = $this->Timetable->Dates->find('list', ['limit' => 200]);
-        $stages = $this->Timetable->Stages->find('list', ['limit' => 200]);
+        $bands = $this->Timetables->Bands->find('list', ['limit' => 200]);
+        $festivals = $this->Timetables->Festivals->find('list', ['limit' => 200]);
+        $dates = $this->Timetables->Dates->find('list', ['limit' => 200]);
+        $stages = $this->Timetables->Stages->find('list', ['limit' => 200]);
         $this->set(compact('timetable', 'bands', 'festivals', 'dates', 'stages'));
     }
 
@@ -81,22 +65,22 @@ class TimetableController extends AppController
      */
     public function edit($id)
     {
-        $timetable = $this->Timetable->get($id, [
+        $timetable = $this->Timetables->get($id, [
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $timetable = $this->Timetable->patchEntity($timetable, $this->request->getData());
-            if ($this->Timetable->save($timetable)) {
+            $timetable = $this->Timetables->patchEntity($timetable, $this->request->getData());
+            if ($this->Timetables->save($timetable)) {
                 $this->Flash->success(__('The timetable has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The timetable could not be saved. Please, try again.'));
         }
-        $bands = $this->Timetable->Bands->find('list', ['limit' => 200]);
-        $festivals = $this->Timetable->Festivals->find('list', ['limit' => 200]);
-        $dates = $this->Timetable->Dates->find('list', ['limit' => 200]);
-        $stages = $this->Timetable->Stages->find('list', ['limit' => 200]);
+        $bands = $this->Timetables->Bands->find('list', ['limit' => 200]);
+        $festivals = $this->Timetables->Festivals->find('list', ['limit' => 200]);
+        $dates = $this->Timetables->Dates->find('list', ['limit' => 200]);
+        $stages = $this->Timetables->Stages->find('list', ['limit' => 200]);
         $this->set(compact('timetable', 'bands', 'festivals', 'dates', 'stages'));
     }
 
@@ -110,8 +94,8 @@ class TimetableController extends AppController
     public function delete($id)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $timetable = $this->Timetable->get($id);
-        if ($this->Timetable->delete($timetable)) {
+        $timetable = $this->Timetables->get($id);
+        if ($this->Timetables->delete($timetable)) {
             $this->Flash->success(__('The timetable has been deleted.'));
         } else {
             $this->Flash->error(__('The timetable could not be deleted. Please, try again.'));

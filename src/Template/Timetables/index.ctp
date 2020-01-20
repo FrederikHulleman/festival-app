@@ -1,11 +1,11 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Timetable[]|\Cake\Collection\CollectionInterface $timetable
+ * @var \App\Model\Entity\Timetable[]|\Cake\Collection\CollectionInterface $timetables
  */
 ?>
-<div class="timetable index large-9 medium-8 columns content">
-    <h3><?= __('Timetable') ?></h3>
+<div class="timetables index large-9 medium-8 columns content">
+    <h3><?= __('Timetables') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -17,7 +17,8 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($timetable_grouped_by_date as $timetable): ?>
+            <?php foreach ($timetables_grouped_by_date as $timetable): 
+                //debug($timetable) ?>
             <tr>
                 <td><?= $timetable->has('band') ? $this->Html->link($timetable->band->name, ['controller' => 'Bands', 'action' => 'view', $timetable->band->slug]) : '' ?></td>
                 <td><?= h($timetable->date->slug) ?></td>

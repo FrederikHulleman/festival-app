@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Timetable Model
+ * Timetables Model
  *
  * @property \App\Model\Table\BandsTable&\Cake\ORM\Association\BelongsTo $Bands
  * @property \App\Model\Table\FestivalsTable&\Cake\ORM\Association\BelongsTo $Festivals
@@ -25,7 +25,7 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class TimetableTable extends Table
+class TimetablesTable extends Table
 {
     /**
      * Initialize method
@@ -37,7 +37,7 @@ class TimetableTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('timetable');
+        $this->setTable('timetables');
         $this->setDisplayField('band_id');
         $this->setPrimaryKey(['band_id', 'festival_id', 'date_id', 'stage_id']);
 

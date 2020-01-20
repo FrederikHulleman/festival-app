@@ -57,9 +57,9 @@ CREATE TABLE stages (
     FOREIGN KEY festival_key (festival_id) REFERENCES festivals(id)
 )  CHARSET=utf8mb4;
 
--- timetable table: links bands, festival, festival planning & stage
+-- timetables table: links bands, festival, festival planning & stage
 -- table includes start & end time
-CREATE TABLE timetable (
+CREATE TABLE timetables (
     band_id INT NOT NULL,
     festival_id INT NOT NULL, 
     date_id INT NOT NULL,
