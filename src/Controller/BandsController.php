@@ -35,7 +35,6 @@ class BandsController extends AppController
     public function view($slug)
     {
         $band = $this->Bands->find('bySlug', ['slug' => $slug])->firstOrFail();
-
         $this->set('band', $band);
     }
 

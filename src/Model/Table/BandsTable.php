@@ -104,6 +104,7 @@ class BandsTable extends Table
     public function findBySlug(Query $query, array $options)
     {
         $slug = $options['slug'];
-        return $query->where(['bands.slug' => $slug])->contain(['Timetables']);
+        //also load nested assocations Dates & Stages, so band view can display date & stage info
+        return $query->where(['bands.slug' => $slug])->contain(['Timetables' => ['Dates','Stages']]);
     }
 }

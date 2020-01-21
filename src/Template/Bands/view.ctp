@@ -11,7 +11,7 @@
     </div>
     <div class="related">
         <h4><?= __('Related Timetable') ?></h4>
-        <?php if (!empty($band->timetable)): ?>
+        <?php if (!empty($band->timetables)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Date') ?></th>
@@ -19,12 +19,12 @@
                 <th scope="col"><?= __('Endtime') ?></th>
                 <th scope="col"><?= __('Stage') ?></th>
             </tr>
-            <?php foreach ($band->timetable as $timetable): ?>
+            <?php foreach ($band->timetables as $timetable): ?>
             <tr>
-                <td><?= h($timetable->date_id) ?></td>
-                <td><?= h($timetable->starttime) ?></td>
-                <td><?= h($timetable->endtime) ?></td>
-                <td><?= h($timetable->stage_id) ?></td>
+                <td><?= h($timetable->date->date->format('F jS, Y')) ?></td>
+                <td><?= h($timetable->starttime->format('H:i A')) ?></td>
+                <td><?= h($timetable->endtime->format('H:i A')) ?></td>
+                <td><?= h($timetable->stage->name) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>
