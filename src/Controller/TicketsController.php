@@ -48,22 +48,47 @@ class TicketsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function order()
     {
-        $ticket = $this->Tickets->newEntity();
-        if ($this->request->is('post')) {
-            $ticket = $this->Tickets->patchEntity($ticket, $this->request->getData());
-            if ($this->Tickets->save($ticket)) {
-                $this->Flash->success(__('The ticket has been saved.'));
+        //there will be one festival to work with, but if somehow more festivals would be present, the first is retrieved to work with 
+        $query = $this->Tickets->Festivals->find('all');
+        $festival = $query->firstOrFail();
 
-                return $this->redirect(['action' => 'index']);
+        if ($this->request->is('post')) {
+            $data = $this->request->getData(); 
+            
+            foreach($data['dates']['_ids'] as $date) {
+                $ticket = $this->Tickets->newEntity();
+                
+                $date = $this->Tickets->Dates->get($date);
+                $visitor = $this->Tickets->Visitors->findOrCreate(['email' => $data['visitor']['email']]);
+
+                $ticket->date = $date;
+                $ticket->visitor = $visitor;
+                $ticket->festival = $festival; 
+
+                if (!$this->Tickets->save($ticket)) {
+                    $this->Flash->error(__('The ticket could not be saved. Please, try again.'));
+                    exit;
+                }
+                
             }
-            $this->Flash->error(__('The ticket could not be saved. Please, try again.'));
+            if(count($data['dates']['_ids']) == 1) {
+                $this->Flash->success(__('The ticket has been saved.'));
+            }
+            else {
+                $this->Flash->success(__('The tickets have been saved.'));
+            }
+            return $this->redirect(['controller' => 'Festivals', 'action' => 'view','leidsche-rijn-mahler-festival']);
         }
-        $festivals = $this->Tickets->Festivals->find('list', ['limit' => 200]);
+
+        $ticket = $this->Tickets->newEntity();
+
+        //$festivals = $this->Tickets->Festivals->find('list', ['limit' => 200]);
         $dates = $this->Tickets->Dates->find('list', ['limit' => 200]);
         $visitors = $this->Tickets->Visitors->find('list', ['limit' => 200]);
-        $this->set(compact('ticket', 'festivals', 'dates', 'visitors'));
+    
+        $this->set(compact('ticket', 'festival', 'dates', 'visitors'));
     }
 
     /**

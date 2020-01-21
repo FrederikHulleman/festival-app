@@ -13,13 +13,15 @@
         <?php if (!empty($festival->dates)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('Starttime') ?></th>
-                <th scope="col"><?= __('Endtime') ?></th>
+                <th scope="col"><?= __('Takes place on...') ?></th>
             </tr>
             <?php foreach ($festival->dates as $dates): ?>
             <tr>
-                <td><?= h($dates->starttime) ?></td>
-                <td><?= h($dates->endtime) ?></td>
+                <td><?= $this->Html->link(
+                                        __(h($dates->date->format('F jS, Y') 
+                                        . " " . $dates->starttime->format('H:i A')
+                                        . " - " . $dates->endtime->format('H:i A'))
+                                        ), ['controller' => 'Timetables', 'action' => 'index']) ?> 
             </tr>
             <?php endforeach; ?>
         </table>

@@ -52,7 +52,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="container clearfix">
         <nav class="large-3 medium-4 columns" id="actions-sidebar">
             <ul class="side-nav">
-                <li><?= $this->Html->link(__('Order Ticket'), ['controller' => 'Tickets', 'action' => 'add']) ?> </li>
+                <li><?= $this->Html->link(__('Order Ticket'), ['controller' => 'Tickets', 'action' => 'order']) ?> </li>
                 <li><?= $this->Html->link(__('Bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
                 <li><?= $this->Html->link(__('Timetables'), ['controller' => 'Timetables', 'action' => 'index']) ?> </li>
             </ul>
