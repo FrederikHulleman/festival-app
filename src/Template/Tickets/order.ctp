@@ -10,7 +10,7 @@
         <legend><?= __('Order Ticket') ?></legend>
         <?php
             echo $this->Form->control('visitor.email', ['type' => 'email']);
-            echo $this->Form->control('dates._ids', ['options' => $dates]);
+            echo $this->Form->control('dates._ids', ['options' => $dates,'required' => true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
