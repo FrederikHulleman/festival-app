@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * User Entity
@@ -14,6 +15,16 @@ use Cake\ORM\Entity;
  */
 class User extends Entity
 {
+    protected function _setPassword($value)
+    {
+        debug($value);
+        if (strlen($value)) {
+            $hasher = new DefaultPasswordHasher();
+
+            return $hasher->hash($value);
+        }
+    }
+
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
