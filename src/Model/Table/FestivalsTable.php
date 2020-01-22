@@ -106,11 +106,9 @@ class FestivalsTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
-        if ($entity->isNew() && !$entity->slug) {
-            $sluggedTitle = Text::slug($entity->title);
-            // trim slug to maximum length defined in schema
-            $entity->slug = substr($sluggedTitle, 0, 191);
-        }
+        $sluggedTitle = Text::slug($entity->title);
+        // trim slug to maximum length defined in schema
+        $entity->slug = substr($sluggedTitle, 0, 191);
     }
 
     public function findBySlug(Query $query, array $options)

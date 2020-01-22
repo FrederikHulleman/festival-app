@@ -96,11 +96,9 @@ class StagesTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
-        if ($entity->isNew() && !$entity->slug) {
-            $slug = Text::slug($entity->name);
-            // trim slug to maximum length defined in schema
-            $entity->slug = substr($slug, 0, 191);
-        }
+        $slug = Text::slug($entity->name);
+        // trim slug to maximum length defined in schema
+        $entity->slug = substr($slug, 0, 191);
     }
 
     public function findBySlug(Query $query, array $options)

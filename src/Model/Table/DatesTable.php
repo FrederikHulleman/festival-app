@@ -78,7 +78,7 @@ class DatesTable extends Table
             ->date('date')
             ->requirePresence('date', 'create')
             ->notEmptyDate('date');
-            
+
         $validator
             ->time('starttime')
             ->requirePresence('starttime', 'create')
@@ -109,9 +109,7 @@ class DatesTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
-        if ($entity->isNew() && !$entity->slug) {
-            $entity->slug = date_format($entity->starttime,"Y-m-d");
-        }
+        $entity->slug = $entity->date->format("Y-m-d");
     }
 
     public function findBySlug(Query $query, array $options)
