@@ -147,7 +147,7 @@ class TicketsController extends AppController
                                         ->where(['dates.festival_id' => $festival->id]);
         $visitors = $this->Tickets->Visitors->find('list', ['limit' => 200]);
 
-        $this->set(compact('ticket', 'dates'));
+        $this->set(compact('ticket', 'dates','festival'));
     }
 
     /**

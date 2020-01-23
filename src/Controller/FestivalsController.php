@@ -46,8 +46,6 @@ class FestivalsController extends AppController
      */
     public function edit()
     {
-        $dates = $this->Festivals->Dates->find('all')
-            ->where(['dates.festival_id' => $this->festival->id]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $this->festival = $this->Festivals->patchEntity($this->festival, $this->request->getData());
@@ -58,6 +56,9 @@ class FestivalsController extends AppController
             }
             $this->Flash->error(__('The festival could not be saved. Please, try again.'));
         }
+        $dates = $this->Festivals->Dates->find('all')
+            ->where(['dates.festival_id' => $this->festival->id]);
+
         $this->set(compact('dates'));
     }
 }
