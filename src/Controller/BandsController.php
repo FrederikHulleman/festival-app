@@ -12,7 +12,7 @@ use App\Controller\AppController;
  */
 class BandsController extends AppController
 {
-    
+
     /**
      * Index method
      *
@@ -21,7 +21,6 @@ class BandsController extends AppController
     public function index()
     {
         $bands = $this->paginate($this->Bands);
-        
         $this->set(compact('bands'));
     }
 
@@ -35,7 +34,7 @@ class BandsController extends AppController
     public function view($slug)
     {
         $band = $this->Bands->find('bySlug', ['slug' => $slug])->firstOrFail();
-        $this->set('band', $band);
+        $this->set(compact('band'));
     }
 
     /**

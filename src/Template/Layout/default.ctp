@@ -42,15 +42,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
+                <?php
+                    if (!empty($user)):?>
+                    <li><?= $this->Html->link(__($user['email']), ['controller' => 'Users', 'action' => 'view', $user['id']]); ?></li>
+                <?php endif; ?>
                 <li>
                     <?php
-                    debug($user);
-//                    //debug($this->Identity);
-//                    if ($this->Identity->isLoggedIn()):
-//                        echo $this->Html->link(__('logout'), ['controller' => 'Users', 'action' => 'logout']);
-//                    else:
-//                        echo $this->Html->link(__('login'), ['controller' => 'Users', 'action' => 'login']);
-//                    endif;
+                    if (!empty($user)):
+                        echo $this->Html->link(__('logout'), ['controller' => 'Users', 'action' => 'logout']);
+                    else:
+                        echo $this->Html->link(__('login'), ['controller' => 'Users', 'action' => 'login']);
+                    endif;
                     ?> </li>
 <!--                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>-->
 <!--                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>-->
@@ -62,9 +64,16 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="container clearfix">
         <nav class="large-3 medium-4 columns" id="actions-sidebar">
             <ul class="side-nav">
-                <li><?= $this->Html->link(__('Order Ticket'), ['controller' => 'Tickets', 'action' => 'order']) ?> </li>
-                <li><?= $this->Html->link(__('Bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
-                <li><?= $this->Html->link(__('Timetables'), ['controller' => 'Timetables', 'action' => 'index']) ?> </li>
+                <?php if (!empty($user)): ?>
+                    <li><?= $this->Html->link(__('Edit festival info'), ['controller' => 'Festivals', 'action' => 'edit', 'leidsche-rijn-mahler-festival']) ?> </li>
+                    <li><?= $this->Html->link(__('Edit bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
+                    <li><?= $this->Html->link(__('Edit timetables'), ['controller' => 'Timetables', 'action' => 'edit']) ?> </li>
+
+                <?php else: ?>
+                    <li><?= $this->Html->link(__('Order Ticket'), ['controller' => 'Tickets', 'action' => 'order']) ?> </li>
+                    <li><?= $this->Html->link(__('Bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
+                    <li><?= $this->Html->link(__('Timetables'), ['controller' => 'Timetables', 'action' => 'index']) ?> </li>
+                <?php endif ?>
             </ul>
         </nav>
         <?= $this->fetch('content') ?>
