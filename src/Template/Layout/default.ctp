@@ -37,7 +37,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1><?= $this->Html->link(__('Home'), ['controller' => 'Festivals', 'action' => 'view', 'leidsche-rijn-mahler-festival']) ?></h1>
+                <h1><?= $this->Html->link(__('Home'), ['controller' => 'Festivals', 'action' => 'view']) ?></h1>
             </li>
         </ul>
         <div class="top-bar-section">
@@ -65,7 +65,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <nav class="large-3 medium-4 columns" id="actions-sidebar">
             <ul class="side-nav">
                 <?php if (!empty($user)): ?>
-                    <li><?= $this->Html->link(__('Edit festival info'), ['controller' => 'Festivals', 'action' => 'edit', 'leidsche-rijn-mahler-festival']) ?> </li>
+                    <li><?= $this->Html->link(__('Edit festival info'), ['controller' => 'Festivals', 'action' => 'edit']) ?> </li>
                     <li><?= $this->Html->link(__('Edit bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
                     <li><?= $this->Html->link(__('Edit timetables'), ['controller' => 'Timetables', 'action' => 'edit']) ?> </li>
 

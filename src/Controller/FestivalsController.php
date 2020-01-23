@@ -12,6 +12,19 @@ use App\Controller\AppController;
  */
 class FestivalsController extends AppController
 {
+
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->festival = $this->Festivals->find('all')
+            ->contain(['Dates', 'Stages', 'Tickets', 'Timetables'])
+            ->firstOrFail();
+
+        $this->set('festival', $this->festival);
+
+    }
+
     /**
      * View method
      *
@@ -19,11 +32,9 @@ class FestivalsController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($slug)
+    public function view()
     {
-        $festival = $this->Festivals->find('bySlug', ['slug' => $slug])->firstOrFail();
 
-        $this->set('festival', $festival);
     }
 
     /**
@@ -33,23 +44,20 @@ class FestivalsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($slug)
+    public function edit()
     {
-        $festival = $this->Festivals->find('bySlug', ['slug' => $slug])->firstOrFail();
         $dates = $this->Festivals->Dates->find('all')
-                                    ->where(['dates.festival_id' => $festival->id]);
+            ->where(['dates.festival_id' => $this->festival->id]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            debug($this->request->getData());
-            $festival = $this->Festivals->patchEntity($festival, $this->request->getData());
-            //debug($festival);
-            if ($this->Festivals->save($festival)) {
+            $this->festival = $this->Festivals->patchEntity($this->festival, $this->request->getData());
+            if ($this->Festivals->save($this->festival)) {
                 $this->Flash->success(__('The festival has been saved.'));
 
-                return $this->redirect(['action' => 'view','leidsche-rijn-mahler-festival']);
+                return $this->redirect(['action' => 'view']);
             }
             $this->Flash->error(__('The festival could not be saved. Please, try again.'));
         }
-        $this->set(compact('festival','dates'));
+        $this->set(compact('dates'));
     }
 }

@@ -11,7 +11,8 @@
         <?php
             echo $this->Form->control('title');
             echo $this->Form->control('description');
-            foreach($dates as $$date):
+            foreach($dates as $date):
+                echo $this->Form->hidden('dates.'.$date->id.'.id',['value' => $date->id]);
                 echo $this->Form->control('dates.'.$date->id.'.date',['value' => $date->date]);
                 echo $this->Form->control('dates.'.$date->id.'.starttime',['value' => $date->starttime]);
                 echo $this->Form->control('dates.'.$date->id.'.endtime',['value' => $date->endtime]);

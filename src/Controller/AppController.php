@@ -61,8 +61,7 @@ class AppController extends Controller
             ],
             'logoutRedirect' => [
                 'controller' => 'Festivals',
-                'action' => 'view',
-                'leidsche-rijn-mahler-festival'
+                'action' => 'view'
             ],
             // If unauthorized, return them to page they were just on
             'unauthorizedRedirect' => $this->referer()
@@ -72,6 +71,7 @@ class AppController extends Controller
         // continues to work. Also enable the read only actions.
         $this->Auth->allow(['display', 'view', 'index']);
 
+        //always provide user info to all views
         if(!empty($this->Auth->user())) {
             $user = $this->Auth->user();
             $this->set('user',$user);
@@ -87,7 +87,9 @@ class AppController extends Controller
 //    public function beforeRender(Event $event) {
 //        parent::beforeRender($event);
 //
-//        //always provide user info to all views
+//        //provide festival data, if not yet available
+//
+//
 //
 //    }
 }

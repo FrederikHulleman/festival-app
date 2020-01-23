@@ -133,7 +133,7 @@ class TicketsController extends AppController
                         }
 
                         $this->Flash->success(__($start_succes_message . ' been sent to your email address'));
-                        return $this->redirect(['controller' => 'Festivals', 'action' => 'view','leidsche-rijn-mahler-festival']);
+                        return $this->redirect(['controller' => 'Festivals', 'action' => 'view']);
                     }
                 }
 
