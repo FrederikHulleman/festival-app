@@ -40,7 +40,9 @@ class FestivalsController extends AppController
                                     ->where(['dates.festival_id' => $festival->id]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
+            debug($this->request->getData());
             $festival = $this->Festivals->patchEntity($festival, $this->request->getData());
+            //debug($festival);
             if ($this->Festivals->save($festival)) {
                 $this->Flash->success(__('The festival has been saved.'));
 
