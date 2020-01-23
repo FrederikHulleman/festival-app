@@ -13,6 +13,12 @@ use Cake\Mailer\Email;
  */
 class TicketsController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['order']);
+    }
+
     /**
      * Index method
      *
@@ -53,16 +59,16 @@ class TicketsController extends AppController
     {
         $continue = TRUE;
         $date_string = "";
-        
-        //there will be one festival to work with, but if somehow more festivals would be present, the first is retrieved to work with 
+
+        //there will be one festival to work with, but if somehow more festivals would be present, the first is retrieved to work with
         $query = $this->Tickets->Festivals->find('all');
         $festival = $query->firstOrFail();
 
         if ($this->request->is('post')) {
             $data = $this->request->getData();
-            
+
             if(empty($data['dates']['_ids'])) {
-                $continue = FALSE; 
+                $continue = FALSE;
                 $this->Flash->error(__('Please select the dates you want to visit ' . $festival->title));
             }
             else {
@@ -76,35 +82,35 @@ class TicketsController extends AppController
                     $start_error_message = 'The tickets ';
                     $date_string .= "for ";
                 }
-                
+
                 $dates = array();
                 foreach($data['dates']['_ids'] as $key=>$date_id) {
-                    
+
                     if($continue) {
-                        
+
                         $ticket = $this->Tickets->newEntity();
-                        
+
                         $dates[$key] = $this->Tickets->Dates->get($date_id);
                         $visitor = $this->Tickets->Visitors->findOrCreate(['email' => $data['visitor']['email']]);
 
                         $ticket->date = $dates[$key];
                         $ticket->visitor = $visitor;
-                        $ticket->festival = $festival; 
+                        $ticket->festival = $festival;
 
                         if (!$this->Tickets->save($ticket)) {
-                            $continue = FALSE; 
+                            $continue = FALSE;
                             //$this->Flash->error(__($start_error_message . 'could not be saved. Please, try again.'));
                         }
 
                         if($key !== 0) {
-                            $date_string .= " and " . $dates[$key]->date->format('F jS, Y'); 
+                            $date_string .= " and " . $dates[$key]->date->format('F jS, Y');
                         }
                         else {
-                            $date_string .= $dates[$key]->date->format('F jS, Y'); 
+                            $date_string .= $dates[$key]->date->format('F jS, Y');
                         }
                     }
                 }
-                
+
                 if($continue) {
                     $email = new Email('gmail');
                     $email->to($data['visitor']['email'])
@@ -112,27 +118,27 @@ class TicketsController extends AppController
                         //->send('My message')
                         ;
 
-                    $body = 'Hi, congratulations, you successfully booked your '.$festival->title.' tickets '. $date_string .'. See you then! Cheers, the LRMF team'; 
+                    $body = 'Hi, congratulations, you successfully booked your '.$festival->title.' tickets '. $date_string .'. See you then! Cheers, the LRMF team';
 
                     if($email->send($body)) {
                         foreach($dates as $date) {
                             $query = $this->Tickets->find('all')
                                                 ->where(['tickets.festival_id' => $festival->id,
                                                         'tickets.date_id' => $date->id,
-                                                        'tickets.visitor_id' => $visitor->id       
+                                                        'tickets.visitor_id' => $visitor->id
                                                     ]);
                             $ticket = $query->firstOrFail();
                             $ticket->confirmed = TRUE;
                             $this->Tickets->save($ticket);
                         }
-                        
+
                         $this->Flash->success(__($start_succes_message . ' been sent to your email address'));
                         return $this->redirect(['controller' => 'Festivals', 'action' => 'view','leidsche-rijn-mahler-festival']);
                     }
                 }
-                
-                $this->Flash->error(__($start_error_message . 'could not be saved. Please, try again.')); 
-            }   
+
+                $this->Flash->error(__($start_error_message . 'could not be saved. Please, try again.'));
+            }
         }
         $ticket = $this->Tickets->newEntity();
 
@@ -140,7 +146,7 @@ class TicketsController extends AppController
         $dates = $this->Tickets->Dates->find('list', ['limit' => 200])
                                         ->where(['dates.festival_id' => $festival->id]);
         $visitors = $this->Tickets->Visitors->find('list', ['limit' => 200]);
-    
+
         $this->set(compact('ticket', 'dates'));
     }
 

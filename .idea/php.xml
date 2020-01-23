@@ -76,6 +76,7 @@
       <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
       <path value="$PROJECT_DIR$/vendor/cakephp/debug_kit" />
       <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/cakephp/authentication" />
     </include_path>
   </component>
   <component name="PhpUnit">
