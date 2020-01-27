@@ -47,9 +47,13 @@ class BandsController extends AppController
         $band = $this->Bands->newEntity();
         if ($this->request->is('post')) {
             $band = $this->Bands->patchEntity($band, $this->request->getData());
+            //first the band is saved without an id
             if ($this->Bands->save($band)) {
                 $this->Flash->success(__('The band has been saved.'));
 
+                //now the band has an ID, the slug generated should be saved
+                $band->slug = $this->Bands->createSlug($band);
+                $this->Bands->save($band);
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The band could not be saved. Please, try again.'));

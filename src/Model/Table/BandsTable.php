@@ -92,7 +92,7 @@ class BandsTable extends Table
         return $rules;
     }
 
-    protected function createSlug($entity) {
+    public function createSlug($entity) {
         $slug = Text::slug($entity->name, '-');
         $slug = strtolower($slug);
 
@@ -119,7 +119,15 @@ class BandsTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
-        $entity->slug = $this->createSlug($entity);
+        if($entity->isNew()) {
+            //when adding a new entity: make sure the mandatory unique slug column is filled with a unique value
+            //this because no ID is available here
+            //the slug will be added after saving by the controller
+            $entity->slug = uniqid();
+        }
+        else {
+            $entity->slug = $this->createSlug($entity);
+        }
     }
 
     public function findBySlug(Query $query, array $options)
