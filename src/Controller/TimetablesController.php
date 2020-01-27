@@ -143,17 +143,23 @@ class TimetablesController extends AppController
 
         }
 
-
-
         if ($this->request->is(['patch', 'post', 'put'])) {
-            debug($this->request->getData());
-//            $timetable = $this->Timetables->patchEntity($timetable, $this->request->getData());
-//            if ($this->Bands->save($band)) {
-//                $this->Flash->success(__('The band has been saved.'));
-//
-//                //return $this->redirect(['action' => 'index']);
-//            }
-//            $this->Flash->error(__('The band could not be saved. Please, try again.'));
+            //$timetable = $this->Timetables->patchEntity($timetable, $this->request->getData(),
+            //    ['associated' => ['Dates','Festivals','Stages','Bands']]
+            //    );
+
+            $data = $this->request->getData();
+
+            $timetable->band = $this->Timetables->Bands->get($data['band']['id']);
+            $timetable->stage = $this->Timetables->Stages->get($data['stage']['id']);
+
+            if ($this->Timetables->save($timetable,
+                         ['associated' => ['Dates','Festivals','Stages','Bands']])) {
+                $this->Flash->success(__('The timetable has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The timetable could not be saved. Please, try again.'));
         }
 
         $bands = $this->Timetables->Bands->find('list', ['limit' => 200]);
@@ -171,10 +177,28 @@ class TimetablesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id)
+    public function delete($date_time_key)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $timetable = $this->Timetables->get($id);
+
+        $key_elements = explode('-',$date_time_key);
+
+        $date_id = $key_elements[0];
+        $start_hour_string = $key_elements[1];
+        $start_time_search_string = $start_hour_string . ":00:00";
+
+        //there will be one festival to work with, but if somehow more festivals would be present, the first is retrieved to work with
+        $query = $this->Timetables->Festivals->find('all');
+        $festival = $query->firstOrFail();
+
+        $timetable = $this->Timetables->find('all')
+            ->contain(['Dates', 'Stages', 'Bands', 'Festivals'])
+            ->where([
+                'timetables.festival_id' => $festival->id,
+                'timetables.date_id' => $date_id,
+                'timetables.starttime' => $start_time_search_string
+            ])->firstOrFail();
+
         if ($this->Timetables->delete($timetable)) {
             $this->Flash->success(__('The timetable has been deleted.'));
         } else {

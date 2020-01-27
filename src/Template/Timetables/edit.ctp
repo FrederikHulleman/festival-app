@@ -24,7 +24,7 @@
                 $options = ['empty' => '(select band)'];
             }
 
-            echo $this->Form->select('bands.name',
+            echo $this->Form->select('band.id',
                                         $bands,
                                         $options
                                 );
@@ -38,7 +38,7 @@
                 $options = ['empty' => '(select stage)'];
             }
 
-            echo $this->Form->select('stages.name',
+            echo $this->Form->select('stage.id',
                                             $stages,
                                             $options
                                     );

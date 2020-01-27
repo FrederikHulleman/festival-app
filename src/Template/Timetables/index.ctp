@@ -43,7 +43,11 @@
                         <?php if (!empty($user)): ?>
                             <td class="actions">
                                 <?= $this->Html->link(__('Edit'), ['action' => 'edit',$key]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$key], ['confirm' => __('Are you sure you want to delete # {0}?', $key)]) ?>
+                                <?php if ($timetable instanceof App\Model\Entity\Timetable):
+                                    $message = $dates['date']->format('F jS, Y') . " - " . $timetable['starttime']->format('H:i A');
+                                    ?>
+                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$key], ['confirm' => __('Are you sure you want to delete timeslot # {0}?', $message)]) ?>
+                                <?php endif; ?>
                             </td>
                         <?php endif; ?>
 

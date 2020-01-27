@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 22, 2020 at 11:59 AM
+-- Generation Time: Jan 27, 2020 at 02:54 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -34,7 +34,7 @@ CREATE TABLE `bands` (
 --
 
 INSERT INTO `bands` (`id`, `name`, `slug`, `description`, `created`, `modified`) VALUES
-(1, 'KCO', 'kco', 'Best orchestra of the world & Amsterdam!', '2020-01-15 17:13:16', '2020-01-16 12:42:59'),
+(1, 'KCO', 'kco', 'Best orchestra of the world & Amsterdam!', '2020-01-15 17:13:16', '2020-01-27 10:29:05'),
 (2, 'RPO', 'RPO', 'Best orchestra of Rotterdam', '2020-01-15 17:13:16', '2020-01-15 17:13:16'),
 (3, 'Radio Philharmonisch Orkest', 'Radio-Philharmonisch-Orkest', 'Beautiful orchestra often performs on TV and radio live recordings.', '2020-01-15 17:13:16', '2020-01-15 17:13:16');
 
@@ -47,7 +47,6 @@ INSERT INTO `bands` (`id`, `name`, `slug`, `description`, `created`, `modified`)
 CREATE TABLE `dates` (
   `id` int(11) NOT NULL,
   `festival_id` int(11) NOT NULL,
-  `slug` varchar(10) NOT NULL,
   `date` date NOT NULL,
   `starttime` time NOT NULL DEFAULT '00:00:00',
   `endtime` time NOT NULL DEFAULT '00:00:00',
@@ -59,9 +58,9 @@ CREATE TABLE `dates` (
 -- Dumping data for table `dates`
 --
 
-INSERT INTO `dates` (`id`, `festival_id`, `slug`, `date`, `starttime`, `endtime`, `created`, `modified`) VALUES
-(1, 1, '2020-07-04', '2020-07-04', '14:00:00', '23:00:00', '2020-01-16 08:36:00', '2020-01-21 14:37:06'),
-(2, 1, '2020-07-05', '2020-07-05', '14:00:00', '23:00:00', '2020-01-16 08:36:00', '2020-01-16 08:36:00');
+INSERT INTO `dates` (`id`, `festival_id`, `date`, `starttime`, `endtime`, `created`, `modified`) VALUES
+(1, 1, '2020-07-04', '14:00:00', '23:00:00', '2020-01-16 08:36:00', '2020-01-27 09:49:57'),
+(2, 1, '2020-07-05', '14:00:00', '23:00:00', '2020-01-16 08:36:00', '2020-01-27 09:49:57');
 
 -- --------------------------------------------------------
 
@@ -83,7 +82,7 @@ CREATE TABLE `festivals` (
 --
 
 INSERT INTO `festivals` (`id`, `title`, `slug`, `description`, `created`, `modified`) VALUES
-(1, 'Leidsche Rijn Mahler Festival', 'leidsche-rijn-mahler-festival', 'Come and enjoy the best & only Mahler festival in the World, in the best place to live: Leidsche Rijn!', '2020-01-15 17:13:16', '2020-01-21 18:51:33');
+(1, 'Leidsche Rijn Mahler Festival', 'leidsche-rijn-mahler-festival', 'Come and enjoy the best & only Mahler festival in the World, in the best place to live: Leidsche Rijn!', '2020-01-23 21:07:39', '2020-01-27 09:49:57');
 
 -- --------------------------------------------------------
 
@@ -128,8 +127,8 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`festival_id`, `date_id`, `visitor_id`, `confirmed`, `created`, `modified`) VALUES
-(1, 1, 17, 1, '2020-01-22 10:54:00', '2020-01-22 10:54:02'),
-(1, 2, 17, 1, '2020-01-22 10:54:00', '2020-01-22 10:54:02');
+(1, 1, 18, 1, '2020-01-23 21:34:31', '2020-01-23 21:34:33'),
+(1, 2, 18, 1, '2020-01-23 21:34:31', '2020-01-23 21:34:33');
 
 -- --------------------------------------------------------
 
@@ -153,10 +152,8 @@ CREATE TABLE `timetables` (
 --
 
 INSERT INTO `timetables` (`band_id`, `festival_id`, `date_id`, `stage_id`, `starttime`, `endtime`, `created`, `modified`) VALUES
-(1, 1, 1, 1, '15:00:00', '15:45:00', '2020-01-16 12:28:13', '2020-01-16 12:28:13'),
-(2, 1, 2, 2, '21:00:00', '21:45:00', '2020-01-19 14:49:07', '2020-01-19 14:49:07'),
-(3, 1, 1, 1, '20:00:00', '20:45:00', '2020-01-19 14:52:35', '2020-01-19 14:52:35'),
-(3, 1, 2, 2, '19:00:00', '19:45:00', '2020-01-19 14:52:35', '2020-01-19 14:52:35');
+(2, 1, 1, 2, '14:00:00', '14:45:00', '2020-01-27 13:54:15', '2020-01-27 13:54:15'),
+(3, 1, 2, 2, '16:00:00', '16:45:00', '2020-01-27 13:54:24', '2020-01-27 13:54:24');
 
 -- --------------------------------------------------------
 
@@ -177,7 +174,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `created`, `modified`) VALUES
-(1, 'cakephp@example.com', 'secret', '2020-01-15 17:13:16', '2020-01-15 17:13:16');
+(1, 'admin@lrmf.nl', '$2y$10$NGXCgmIn9GgF5/91BRbinO3Zo6MtlneJE.YcVOogaCyrAO.48gSeG', '2020-01-15 17:13:16', '2020-01-22 19:47:40');
 
 -- --------------------------------------------------------
 
@@ -191,13 +188,6 @@ CREATE TABLE `visitors` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `visitors`
---
-
-INSERT INTO `visitors` (`id`, `email`, `created`, `modified`) VALUES
-(17, 'fhulleman@gmail.com', '2020-01-22 09:56:17', '2020-01-22 09:56:17');
 
 --
 -- Indexes for dumped tables
@@ -215,7 +205,6 @@ ALTER TABLE `bands`
 --
 ALTER TABLE `dates`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug` (`slug`),
   ADD KEY `festival_key` (`festival_id`);
 
 --
@@ -272,19 +261,19 @@ ALTER TABLE `visitors`
 -- AUTO_INCREMENT for table `bands`
 --
 ALTER TABLE `bands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `dates`
 --
 ALTER TABLE `dates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `festivals`
 --
 ALTER TABLE `festivals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `stages`
@@ -296,13 +285,13 @@ ALTER TABLE `stages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
