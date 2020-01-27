@@ -9,9 +9,10 @@
     <div class="row">
         <?= $this->Text->autoParagraph(h($band->description)); ?>
     </div>
+    <?php if (!empty($band->timetables)): ?>
     <div class="related">
         <h4><?= __('Performs') ?></h4>
-        <?php if (!empty($band->timetables)): ?>
+
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Date') ?></th>
@@ -28,6 +29,7 @@
             </tr>
             <?php endforeach; ?>
         </table>
-        <?php endif; ?>
+
     </div>
+    <?php endif; ?>
 </div>
