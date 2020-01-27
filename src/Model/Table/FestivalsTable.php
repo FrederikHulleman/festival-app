@@ -104,11 +104,34 @@ class FestivalsTable extends Table
         return $rules;
     }
 
+    protected function createSlug($entity) {
+        $slug = Text::slug($entity->title, '-');
+        $slug = strtolower($slug);
+
+        // trim slug to maximum length defined in schema (191)
+        // taken into account that the id has to be added to the slug
+        $slug = substr($slug, 0, 180);
+
+        $params = array(
+            'conditions' => array('slug' => $slug),
+            'fields' => array('id', 'slug'));
+
+        if (!empty($entity->id)) {
+            $params['conditions']['not'] = array('id' => $entity->id);
+        }
+
+        $count_same_slug = $this->find('all', $params)->count();
+
+        if (!empty($count_same_slug) && $count_same_slug > 0) {
+            $slug = $slug . "-" . $entity->id;
+        }
+
+        return $slug;
+    }
+
     public function beforeSave($event, $entity, $options)
     {
-        $sluggedTitle = Text::slug($entity->title);
-        // trim slug to maximum length defined in schema
-        $entity->slug = substr($sluggedTitle, 0, 191);
+        $entity->slug = $this->createSlug($entity);
     }
 
     public function findBySlug(Query $query, array $options)
