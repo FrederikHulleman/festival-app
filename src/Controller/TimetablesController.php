@@ -36,7 +36,7 @@ class TimetablesController extends AppController
         //and in case a band is planned on a certain date and starttime, add the details to the timetables array
         //in case no band is planned, only the
         $timetables = array();
-        $starttimes_with_bands = array();
+        $starttimes_with_planned_bands = array();
         foreach($all_festival_dates as $date) {
             $timetables[$date->id]['date'] = $date->date;
 
@@ -48,10 +48,12 @@ class TimetablesController extends AppController
             $timeslots_with_planned_bands = $query->all();
             $timeslots_with_planned_bands_array = $timeslots_with_planned_bands->toArray();
 
+            //now only retrieve the starttimes for each planned band,
+            // so we can use that to match this array with the full time table
             $starttimes_with_planned_bands = array_column($timeslots_with_planned_bands_array, 'starttime');
 
-            $i = $date->starttime;
-            while($i<$date->endtime) {
+
+            for($i = $date->starttime; $i<$date->endtime; $i = $i->modify("+1 hour")) {
 
                 //check whether for this hour ($i) a band is scheduled
                 $key = array_search($i,$starttimes_with_planned_bands);
@@ -61,7 +63,7 @@ class TimetablesController extends AppController
                 else {
                     $timetables[$date->id][]['starttime'] = $i;
                 }
-                $i = $i->modify("+1 hour");
+
             }
         }
         $this->set(compact('timetables'));

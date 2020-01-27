@@ -38,7 +38,7 @@ class DatesTable extends Table
         parent::initialize($config);
 
         $this->setTable('dates');
-        $this->setDisplayField('slug');
+        $this->setDisplayField('date');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -68,13 +68,6 @@ class DatesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('slug')
-            ->maxLength('slug', 10)
-            //->requirePresence('slug', 'create')
-            ->notEmptyString('slug')
-            ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
-        $validator
             ->date('date')
             ->requirePresence('date', 'create')
             ->notEmptyDate('date');
@@ -101,20 +94,8 @@ class DatesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['slug']));
         $rules->add($rules->existsIn(['festival_id'], 'Festivals'));
 
         return $rules;
-    }
-
-    public function beforeSave($event, $entity, $options)
-    {
-        $entity->slug = $entity->date->format("Y-m-d");
-    }
-
-    public function findBySlug(Query $query, array $options)
-    {
-        $slug = $options['slug'];
-        return $query->where(['dates.slug' => $slug])->contain(['Festivals', 'Tickets', 'Timetables']);
     }
 }

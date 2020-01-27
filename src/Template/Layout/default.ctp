@@ -67,7 +67,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <?php if (!empty($user)): ?>
                     <li><?= $this->Html->link(__('Edit festival info'), ['controller' => 'Festivals', 'action' => 'edit']) ?> </li>
                     <li><?= $this->Html->link(__('Edit bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
-                    <li><?= $this->Html->link(__('Edit timetables'), ['controller' => 'Timetables', 'action' => 'edit']) ?> </li>
+                    <li><?= $this->Html->link(__('Edit timetables'), ['controller' => 'Timetables', 'action' => 'index']) ?> </li>
 
                 <?php else: ?>
                     <li><?= $this->Html->link(__('Order Ticket'), ['controller' => 'Tickets', 'action' => 'order']) ?> </li>

@@ -94,11 +94,34 @@ class StagesTable extends Table
         return $rules;
     }
 
+    protected function createSlug($entity) {
+        $slug = Text::slug($entity->name, '-');
+        $slug = strtolower($slug);
+
+        // trim slug to maximum length defined in schema (191)
+        // taken into account that the id has to be added to the slug
+        $slug = substr($slug, 0, 180);
+
+        $params = array(
+            'conditions' => array('slug' => $slug),
+            'fields' => array('id', 'slug'));
+
+        if (!empty($entity->id)) {
+            $params['conditions']['not'] = array('id' => $entity->id);
+        }
+
+        $count_same_slug = $this->find('all', $params)->count();
+
+        if (!empty($count_same_slug) && $count_same_slug > 0) {
+            $slug = $slug . "-" . $entity->id;
+        }
+
+        return $slug;
+    }
+
     public function beforeSave($event, $entity, $options)
     {
-        $slug = Text::slug($entity->name);
-        // trim slug to maximum length defined in schema
-        $entity->slug = substr($slug, 0, 191);
+        $entity->slug = $this->createSlug($entity);
     }
 
     public function findBySlug(Query $query, array $options)
