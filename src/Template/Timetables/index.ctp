@@ -42,8 +42,8 @@
 
                         <?php if (!empty($user)): ?>
                             <td class="actions">
-                                <?= $this->Html->link(__('Edit'), ['action' => 'edit']) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete'], ['confirm' => __('Are you sure you want to delete # {0}?')]) ?>
+                                <?= $this->Html->link(__('Edit'), ['action' => 'edit',$key]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$key], ['confirm' => __('Are you sure you want to delete # {0}?', $key)]) ?>
                             </td>
                         <?php endif; ?>
 
