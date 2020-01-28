@@ -22,8 +22,12 @@ use Cake\View\View;
  *
  * @link https://book.cakephp.org/3.0/en/views.html#the-app-view
  */
+
+use BootstrapUI\View\UIViewTrait;
 class AppView extends View
 {
+
+    use UIViewTrait;
 
     /**
      * Initialization hook method.
@@ -37,5 +41,6 @@ class AppView extends View
     public function initialize()
     {
         //$this->loadHelper('Authentication.Identity');
+        $this->initializeUI();
     }
 }
