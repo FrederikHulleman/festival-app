@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Festival $festival
  */
-//$this->extend('../Layout/dashboard');
+
 ?>
 <div class="festivals view large-9 medium-8 columns content">
     <h3>VISITOR PAGE <?= h($festival->title) ?></h3>
