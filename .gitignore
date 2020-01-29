@@ -16,6 +16,9 @@ composer.phar
 /tmp/debug_kit.sqlite
 /src/Template/Archive/*
 /src/Controller/Archive/*
+/webroot/css/bootstrap/*
+/webroot/js/bootstrap/*
+/webroot/js/jquery/*
 
 # Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file

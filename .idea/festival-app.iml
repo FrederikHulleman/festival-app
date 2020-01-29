@@ -17,6 +17,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/cakephp/debug_kit" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cakephp/migrations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cakephp/plugin-installer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/components/jquery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
@@ -76,6 +77,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/twbs/bootstrap" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/twig" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/umpirsky/twig-php-function" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />

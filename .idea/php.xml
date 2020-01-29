@@ -4,7 +4,6 @@
     <include_path>
       <path value="$PROJECT_DIR$/vendor/cakephp/bake" />
       <path value="$PROJECT_DIR$/vendor/cakephp/migrations" />
-      <path value="$PROJECT_DIR$/vendor/cakephp/cakephp" />
       <path value="$PROJECT_DIR$/vendor/jasny/twig-extensions" />
       <path value="$PROJECT_DIR$/vendor/cakephp/cakephp-codesniffer" />
       <path value="$PROJECT_DIR$/vendor/cakephp/chronos" />
@@ -77,6 +76,9 @@
       <path value="$PROJECT_DIR$/vendor/cakephp/debug_kit" />
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/friendsofcake/bootstrap-ui" />
+      <path value="$PROJECT_DIR$/vendor/twbs/bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/cakephp/cakephp" />
+      <path value="$PROJECT_DIR$/vendor/components/jquery" />
     </include_path>
   </component>
   <component name="PhpUnit">
