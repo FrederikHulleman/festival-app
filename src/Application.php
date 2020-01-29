@@ -34,7 +34,6 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
-        $this->addPlugin('BootstrapUI');
 
         // Call parent to load bootstrap from files.
         parent::bootstrap();

@@ -75,7 +75,6 @@
       <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
       <path value="$PROJECT_DIR$/vendor/cakephp/debug_kit" />
       <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/friendsofcake/bootstrap-ui" />
       <path value="$PROJECT_DIR$/vendor/twbs/bootstrap" />
       <path value="$PROJECT_DIR$/vendor/cakephp/cakephp" />
       <path value="$PROJECT_DIR$/vendor/components/jquery" />
