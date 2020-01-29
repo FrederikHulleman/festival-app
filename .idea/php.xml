@@ -77,7 +77,6 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/twbs/bootstrap" />
       <path value="$PROJECT_DIR$/vendor/cakephp/cakephp" />
-      <path value="$PROJECT_DIR$/vendor/components/jquery" />
     </include_path>
   </component>
   <component name="PhpUnit">
