@@ -49,6 +49,7 @@ class FestivalsController extends AppController
     {
 
         if ($this->request->is(['patch', 'post', 'put'])) {
+            //debug($this->request->getData());
             $this->festival = $this->Festivals->patchEntity($this->festival, $this->request->getData());
             if ($this->Festivals->save($this->festival)) {
                 $this->Flash->success(__('The festival has been saved.'));

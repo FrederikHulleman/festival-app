@@ -9,29 +9,76 @@
     <fieldset>
         <legend><?= __('Edit Festival') ?></legend>
         <?php
-            echo $this->Form->control('title');
-            echo $this->Form->control('description');
-            foreach($dates as $key=>$date):
-                switch ($key):
-                    case 0:
-                        $label = "Saturday";
-                        break;
-                    case 1:
-                        $label = "Sunday";
-                        break;
-                    default:
-                        $label = "Choose date";
-                        break;
-                endswitch;
-                echo $this->Form->hidden('dates.'.$date->id.'.id',['value' => $date->id]);
-                echo $this->Form->control('dates.'.$date->id.'.date',['label' => $label,'value' => $date->date]);
-            endforeach;
-            echo $this->Form->label('Start & end times both days');
-            echo h($date->starttime->format("H:i A"))
-                . " - " . h($date->endtime->format("H:i A"));
+        echo $this->Form->control('title');
+        echo $this->Form->control('description');
+
+        foreach($dates as $key=>$date):
+            //echo $this->Form->hidden('dates.'.$date->id .'.id',['value' => $date->id]);
+            switch ($key):
+                case 0:
+                    echo $this->Form->label('Start & end times both days');
+                    echo h($date->starttime->format("H:i A"))
+                        . " - " . h($date->endtime->format("H:i A"));
+                    echo "<br><br>";
+                    echo $this->Form->control('dates.'.$date->id.'.date',['type' => 'text','label'=>'Select a saturday','value' => $date->date->format('yy-m-d'),'class'=>'saturday']);
+                    break;
+                case 1:
+                    echo $this->Form->control('dates.'.$date->id.'.date',['type' => 'text','label'=>'... and a sunday','value' => $date->date->format('yy-m-d'),'class'=>'sunday']);
+                    break;
+            endswitch;
+
+        endforeach;
 
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
+
+<script>
+    var dateFormat = 'yy-mm-dd';
+
+    $( function() {
+        $( ".saturday" ).datepicker({'dateFormat':'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            minDate: "-8D",
+            maxDate: "+5Y",
+            beforeShowDay: function(date){
+                if(date.getDay() == 6){
+                    return [true];
+                } else {
+                    return [false];
+                }
+            }
+        });
+    } );
+
+    $( ".saturday" ).change(function() {
+        var newDate = $(".saturday").datepicker('getDate');
+        newDate.setDate(newDate.getDate()+1); //add one day
+        $(".sunday").datepicker('setDate',newDate);
+    });
+
+    $( function() {
+        $( ".sunday" ).datepicker({'dateFormat':'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+            minDate: "-8D",
+            maxDate: "+5Y",
+            beforeShowDay: function(date){
+                if(date.getDay() == 0){
+                    return [true];
+                } else {
+                    return [false];
+                }
+            }
+        });
+    } );
+
+    $( ".sunday" ).change(function() {
+        var newDate = $(".sunday").datepicker('getDate');
+        newDate.setDate(newDate.getDate()-1); //substract one day
+        $(".saturday").datepicker('setDate',newDate);
+    });
+</script>

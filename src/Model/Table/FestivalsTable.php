@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\I18n\Date;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -131,17 +132,7 @@ class FestivalsTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
-        debug($entity->dates[0]->date);
-        debug($entity->dates[1]->date);
-        debug($entity->dates[0]->date->i18nFormat('E e EEEE'));
-        debug($entity->dates[1]->date->i18nFormat('E e EEEE'));
-//        echo $this->Time->format(
-//            $post->created,
-//            \IntlDateFormatter::FULL,"EEEE" "E"
-//            null,
-//            $user->time_zone
-//        );
-        //debug($entity->dates[1]->date->dayOfWeek());
+        //debug($entity);
         $entity->slug = $this->createSlug($entity);
     }
 
@@ -149,5 +140,18 @@ class FestivalsTable extends Table
     {
         $slug = $options['slug'];
         return $query->where(['festivals.slug' => $slug])->contain(['Dates', 'Stages', 'Tickets', 'Timetables']);
+    }
+
+    public function beforeMarshal($event, $data, $options)
+    {
+        debug($data);
+
+        if (isset($data['dates'])) {
+            foreach($data['dates'] as $key=>$date) {
+                debug(new Date($date['date']));
+                $date['dates'][$key]['date'] = new Date($date['date']);
+            }
+        }
+        debug($data);
     }
 }
