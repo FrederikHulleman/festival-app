@@ -13,6 +13,12 @@ use App\Controller\AppController;
 class BandsController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['index','view']);
+    }
+
     /**
      * Index method
      *

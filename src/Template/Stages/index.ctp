@@ -1,13 +1,14 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Band[]|\Cake\Collection\CollectionInterface $bands
+ * @var \App\Model\Entity\Stage[]|\Cake\Collection\CollectionInterface $stages
  */
 ?>
-<div class="bands index large-9 medium-8 columns content">
-    <h3><?= __('Bands') ?></h3>
+
+<div class="stages index large-9 medium-8 columns content">
+    <h3><?= __('Stages') ?></h3>
     <?php if (!empty($user)): ?>
-    <p><?= $this->Html->link(__('New Band'), ['action' => 'add']) ?></p>
+    <p><?= $this->Html->link(__('New stage'), ['controller' => 'Stages', 'action' => 'add']) ?> </p>
     <?php endif; ?>
     <table cellpadding="0" cellspacing="0">
         <thead>
@@ -19,13 +20,14 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($bands as $band): ?>
+            <?php foreach ($stages as $stage): ?>
             <tr>
-                <td><?= $this->Html->link(__(h($band->name)), ['action' => 'view', $band->slug]) ?></td>
+                <td><?= $this->Html->link(__($stage->name), ['action' => 'view', $stage->slug]) ?></td>
                 <?php if (!empty($user)): ?>
                 <td class="actions">
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $band->slug]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $band->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $band->slug)]) ?>
+
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $stage->slug]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $stage->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $stage->slug)]) ?>
                 </td>
                 <?php endif; ?>
             </tr>

@@ -98,4 +98,9 @@ class DatesTable extends Table
 
         return $rules;
     }
+
+    public function beforeSave($event, $entity, $options)
+    {
+        debug($entity);
+    }
 }

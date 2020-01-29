@@ -131,6 +131,17 @@ class FestivalsTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
+        debug($entity->dates[0]->date);
+        debug($entity->dates[1]->date);
+        debug($entity->dates[0]->date->i18nFormat('E e EEEE'));
+        debug($entity->dates[1]->date->i18nFormat('E e EEEE'));
+//        echo $this->Time->format(
+//            $post->created,
+//            \IntlDateFormatter::FULL,"EEEE" "E"
+//            null,
+//            $user->time_zone
+//        );
+        //debug($entity->dates[1]->date->dayOfWeek());
         $entity->slug = $this->createSlug($entity);
     }
 

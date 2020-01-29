@@ -43,6 +43,7 @@ class BandsTable extends Table
 
         $this->hasMany('Timetables', [
             'foreignKey' => 'band_id',
+            'dependent' => true,
         ]);
     }
 
@@ -136,4 +137,5 @@ class BandsTable extends Table
         //also load nested assocations Dates & Stages, so band view can display date & stage info
         return $query->where(['bands.slug' => $slug])->contain(['Timetables' => ['Dates','Stages']]);
     }
+
 }

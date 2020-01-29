@@ -54,9 +54,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                         echo $this->Html->link(__('login'), ['controller' => 'Users', 'action' => 'login']);
                     endif;
                     ?> </li>
-<!--                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>-->
-<!--                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>-->
-<!--                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>-->
             </ul>
         </div>
     </nav>
@@ -67,11 +64,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <?php if (!empty($user)): ?>
                     <li><?= $this->Html->link(__('Edit festival info'), ['controller' => 'Festivals', 'action' => 'edit']) ?> </li>
                     <li><?= $this->Html->link(__('Edit bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
+                    <li><?= $this->Html->link(__('Edit stages'), ['controller' => 'Stages', 'action' => 'index']) ?> </li>
                     <li><?= $this->Html->link(__('Edit timetables'), ['controller' => 'Timetables', 'action' => 'index']) ?> </li>
+                    <li><?= $this->Html->link(__('Edit users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
 
                 <?php else: ?>
                     <li><?= $this->Html->link(__('Order Ticket'), ['controller' => 'Tickets', 'action' => 'order']) ?> </li>
                     <li><?= $this->Html->link(__('Bands'), ['controller' => 'Bands', 'action' => 'index']) ?> </li>
+                    <li><?= $this->Html->link(__('Stages'), ['controller' => 'Stages', 'action' => 'index']) ?> </li>
                     <li><?= $this->Html->link(__('Timetables'), ['controller' => 'Timetables', 'action' => 'index']) ?> </li>
                 <?php endif ?>
             </ul>

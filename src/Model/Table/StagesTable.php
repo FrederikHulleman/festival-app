@@ -48,6 +48,7 @@ class StagesTable extends Table
         ]);
         $this->hasMany('Timetables', [
             'foreignKey' => 'stage_id',
+            'dependent' => true
         ]);
     }
 
@@ -94,7 +95,7 @@ class StagesTable extends Table
         return $rules;
     }
 
-    protected function createSlug($entity) {
+    public function createSlug($entity) {
         $slug = Text::slug($entity->name, '-');
         $slug = strtolower($slug);
 
@@ -135,6 +136,6 @@ class StagesTable extends Table
     public function findBySlug(Query $query, array $options)
     {
         $slug = $options['slug'];
-        return $query->where(['stages.slug' => $slug])->contain(['Festivals', 'Timetable']);
+        return $query->where(['stages.slug' => $slug])->contain(['Festivals', 'Timetables' => ['Bands','Dates']]);
     }
 }

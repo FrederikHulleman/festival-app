@@ -34,7 +34,7 @@
 
                             <td><?= h($timetable->endtime->format('H:i A')) ?></td>
                             <td><?= $this->Html->link($timetable->band->name, ['controller' => 'Bands', 'action' => 'view', $timetable->band->slug]) ?></td>
-                            <td><?= h($timetable->stage->name) ?></td>
+                            <td><?= $this->Html->link($timetable->stage->name, ['controller' => 'Stages', 'action' => 'view', $timetable->stage->slug]) ?></td>
                         <?php else: ?>
                             <td>&nbsp;</td>
                             <td colspan=2>No band planned</td>

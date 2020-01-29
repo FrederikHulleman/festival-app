@@ -66,10 +66,6 @@ class AppController extends Controller
             'unauthorizedRedirect' => $this->referer()
         ]);
 
-        // Allow the display action so our PagesController
-        // continues to work. Also enable the read only actions.
-        $this->Auth->allow(['display', 'view', 'index']);
-
         //always provide user info to all views
         if(!empty($this->Auth->user())) {
             $user = $this->Auth->user();
@@ -82,13 +78,4 @@ class AppController extends Controller
 //        $this->loadComponent('Security');
 //        $this->loadComponent('Csrf');
     }
-
-//    public function beforeRender(Event $event) {
-//        parent::beforeRender($event);
-//
-//        //provide festival data, if not yet available
-//
-//
-//
-//    }
 }

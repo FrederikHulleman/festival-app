@@ -13,6 +13,12 @@ use Cake\I18n\Time;
  */
 class TimetablesController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['index']);
+    }
+
     /**
      * Index method
      *
@@ -67,31 +73,6 @@ class TimetablesController extends AppController
         }
         //debug($timetables);
         $this->set(compact('timetables'));
-    }
-
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $timetable = $this->Timetables->newEntity();
-        if ($this->request->is('post')) {
-            $timetable = $this->Timetables->patchEntity($timetable, $this->request->getData());
-            if ($this->Timetables->save($timetable)) {
-                $this->Flash->success(__('The timetable has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The timetable could not be saved. Please, try again.'));
-        }
-        $bands = $this->Timetables->Bands->find('list', ['limit' => 200]);
-        $festivals = $this->Timetables->Festivals->find('list', ['limit' => 200]);
-        $dates = $this->Timetables->Dates->find('list', ['limit' => 200]);
-        $stages = $this->Timetables->Stages->find('list', ['limit' => 200]);
-        $this->set(compact('timetable', 'bands', 'festivals', 'dates', 'stages'));
     }
 
     /**
