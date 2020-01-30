@@ -82,7 +82,7 @@ class TimetablesController extends AppController
                 }
             }
         }
-        //debug($timetables);
+
         $this->set(compact('timetables'));
     }
 
@@ -114,7 +114,6 @@ class TimetablesController extends AppController
         if(!empty($query->count()) && $query->count() > 0) {
             $mode = "edit";
             $timetable = $query->firstOrFail();
-            debug($query->count());
         }
         else {
             $mode = "add";
@@ -124,7 +123,7 @@ class TimetablesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
 
             $data = $this->request->getData();
-            //debug($data);
+
             if($mode == "edit") {
                 $this->Timetables->delete($timetable);
                 $timetable = $this->Timetables->newEntity();
@@ -135,7 +134,6 @@ class TimetablesController extends AppController
             $timetable->date = $this->Timetables->Dates->get($date_id);
             $timetable->starttime = $data['starttime'];
             $timetable->endtime = $data['endtime'];
-            //debug($timetable);
 
             if ($this->Timetables->save($timetable)) {
                 $this->Flash->success(__('The timetable has been saved.'));
