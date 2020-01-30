@@ -132,7 +132,6 @@ class FestivalsTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
-        //debug($entity);
         $entity->slug = $this->createSlug($entity);
     }
 
@@ -142,16 +141,4 @@ class FestivalsTable extends Table
         return $query->where(['festivals.slug' => $slug])->contain(['Dates', 'Stages', 'Tickets', 'Timetables']);
     }
 
-    public function beforeMarshal($event, $data, $options)
-    {
-        debug($data);
-
-        if (isset($data['dates'])) {
-            foreach($data['dates'] as $key=>$date) {
-                debug(new Date($date['date']));
-                $date['dates'][$key]['date'] = new Date($date['date']);
-            }
-        }
-        debug($data);
-    }
 }

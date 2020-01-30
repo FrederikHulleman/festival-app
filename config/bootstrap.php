@@ -38,11 +38,15 @@ use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorHandler;
 use Cake\Http\ServerRequest;
+use Cake\I18n\Date;
+use Cake\I18n\FrozenDate;
+use Cake\I18n\FrozenTime;
 use Cake\Log\Log;
 use Cake\Mailer\Email;
 use Cake\Mailer\TransportFactory;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
+use Cake\I18n\Time;
 
 /**
  * Uncomment block of code below if you want to use `.env` file during development.
@@ -191,6 +195,11 @@ Type::build('datetime')
     ->useImmutable();
 Type::build('timestamp')
     ->useImmutable();
+
+Time::setToStringFormat('y-MM-dd HH:mm:ss');
+Date::setToStringFormat('y-MM-dd');
+FrozenTime::setToStringFormat('y-MM-dd HH:mm:ss');
+FrozenDate::setToStringFormat('y-MM-dd');
 
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize

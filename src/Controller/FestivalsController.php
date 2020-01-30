@@ -54,7 +54,7 @@ class FestivalsController extends AppController
             if ($this->Festivals->save($this->festival)) {
                 $this->Flash->success(__('The festival has been saved.'));
 
-                //return $this->redirect(['action' => 'view']);
+                return $this->redirect(['action' => 'view']);
             }
             $this->Flash->error(__('The festival could not be saved. Please, try again.'));
         }

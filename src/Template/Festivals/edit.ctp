@@ -13,17 +13,17 @@
         echo $this->Form->control('description');
 
         foreach($dates as $key=>$date):
-            //echo $this->Form->hidden('dates.'.$date->id .'.id',['value' => $date->id]);
+            echo $this->Form->hidden('dates.'.$date->id .'.id',['value' => $date->id]);
             switch ($key):
                 case 0:
                     echo $this->Form->label('Start & end times both days');
                     echo h($date->starttime->format("H:i A"))
                         . " - " . h($date->endtime->format("H:i A"));
                     echo "<br><br>";
-                    echo $this->Form->control('dates.'.$date->id.'.date',['type' => 'text','label'=>'Select a saturday','value' => $date->date->format('yy-m-d'),'class'=>'saturday']);
+                    echo $this->Form->control('dates.'.$date->id.'.date',['type' => 'text','label'=>'Select a saturday','value' => $date->date,'class'=>'saturday']);
                     break;
                 case 1:
-                    echo $this->Form->control('dates.'.$date->id.'.date',['type' => 'text','label'=>'... and a sunday','value' => $date->date->format('yy-m-d'),'class'=>'sunday']);
+                    echo $this->Form->control('dates.'.$date->id.'.date',['type' => 'text','label'=>'... and a sunday','value' => $date->date,'class'=>'sunday']);
                     break;
             endswitch;
 
