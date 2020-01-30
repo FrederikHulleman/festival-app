@@ -21,8 +21,7 @@
                  <table cellpadding="0" cellspacing="0">
                     <thead>
                         <tr>
-                            <th scope="col">Start</th>
-                            <th scope="col">End</th>
+                            <th scope="col">Timeslot</th>
                             <th scope="col">Band</th>
                             <?php if (!empty($user)): ?>
                                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -34,14 +33,15 @@
                     <?php foreach ($stages as $timetable_key => $timetable): ?>
                         <?php if ($timetable_key !== 'stage'): ?>
                             <tr>
-                                <td><?= h($timetable['starttime']->format('H:i A')) ?></td>
+                                <td><?= h($timetable['starttime']->format('H:i A')) ?>
 
                                 <?php if ($timetable instanceof App\Model\Entity\Timetable): ?>
 
-                                    <td><?= h($timetable->endtime->format('H:i A')) ?></td>
+                                    <?= " - " . h($timetable->endtime->format('H:i A')) ?></td>
                                     <td><?= $this->Html->link($timetable->band->name, ['controller' => 'Bands', 'action' => 'view', $timetable->band->slug]) ?></td>
                                 <?php else: ?>
-                                    <td colspan=2>No band planned</td>
+                                    </td>
+                                    <td>No band planned</td>
                                 <?php endif; ?>
 
                                 <?php if (!empty($user)): ?>
@@ -50,7 +50,7 @@
                                         <?php if ($timetable instanceof App\Model\Entity\Timetable):
                                             $message = $dates['date']->format('F jS, Y') . " - " . $stages['stage'] . " - " . $timetable['starttime']->format('H:i A');
                                             ?>
-                                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$timetable_key], ['confirm' => __('Are you sure you want to delete timeslot # {0}?', $message)]) ?>
+                                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$timetable_key], ['confirm' => __('Are you sure you want to delete the band for timeslot # {0}?', $message)]) ?>
                                         <?php endif; ?>
                                     </td>
                                 <?php endif; ?>
