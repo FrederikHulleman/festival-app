@@ -17,6 +17,7 @@ class FestivalsController extends AppController
     {
         parent::initialize();
 
+        //there will be one festival to work with, but if somehow more festivals would be present, the first is retrieved to work with
         $this->festival = $this->Festivals->find('all')
             ->contain(['Dates', 'Stages', 'Tickets', 'Timetables'])
             ->firstOrFail();
@@ -49,7 +50,6 @@ class FestivalsController extends AppController
     {
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            //debug($this->request->getData());
             $this->festival = $this->Festivals->patchEntity($this->festival, $this->request->getData());
             if ($this->Festivals->save($this->festival)) {
                 $this->Flash->success(__('The festival has been saved.'));

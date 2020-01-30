@@ -38,8 +38,8 @@ class TimetablesTable extends Table
         parent::initialize($config);
 
         $this->setTable('timetables');
-        $this->setDisplayField('band_id');
-        $this->setPrimaryKey(['band_id', 'festival_id', 'date_id', 'stage_id']);
+        $this->setDisplayField('festival_id'.'-'.'date_id'.'-'.'starttime'.'-'.'band_id');
+        $this->setPrimaryKey(['festival_id', 'date_id', 'starttime', 'band_id']);
 
         $this->addBehavior('Timestamp');
 
@@ -98,4 +98,5 @@ class TimetablesTable extends Table
 
         return $rules;
     }
+
 }

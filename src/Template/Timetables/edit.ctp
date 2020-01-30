@@ -10,39 +10,33 @@
         <legend><?= __('Edit Timetable') ?></legend>
         <?php
             //debug($timetable);
+            echo $this->Form->hidden('festival.id',['value' => $timetable->festival->id]);
+            echo $this->Form->hidden('date.id',['value' => $timetable->date->id]);
+            echo $this->Form->hidden('stage.id',['value' => $timetable->stage->id]);
+            echo $this->Form->hidden('starttime',['value' => $timetable->starttime]);
+            echo $this->Form->hidden('endtime',['value' => $timetable->endtime]);
+
             echo $this->Form->label('Timeslot');
             echo h($timetable->date->date->format('F jS, Y'))
                    . ": " . h($timetable->starttime->format("H:i A"))
                    . " - " . h($timetable->endtime->format("H:i A"));
             ?><br><br><?php
+            echo $this->Form->label('Stage');
+            echo h($timetable->stage->name);
+            ?><br><br><?php
             echo $this->Form->label('Select band');
 
             if(!empty($timetable->band)) {
-                $options = ['value' => $timetable->band_id];
+                $options = ['label' => 'Band','value' => $timetable->band_id, 'required' => true];
             }
             else {
-                $options = ['empty' => '(select band)'];
+                $options = ['label' => 'Band','empty' => '(select band)', 'required' => true];
             }
-
             echo $this->Form->select('band.id',
                                         $bands,
                                         $options
                                 );
-            ?><br><br><?php
-            echo $this->Form->label('Select stage');
-
-            if(!empty($timetable->stage)) {
-                $options = ['value' => $timetable->stage_id];
-            }
-            else {
-                $options = ['empty' => '(select stage)'];
-            }
-
-            echo $this->Form->select('stage.id',
-                                            $stages,
-                                            $options
-                                    );
-        ?>
+            ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

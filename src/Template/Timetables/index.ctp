@@ -9,52 +9,54 @@
 
     <?php foreach ($timetables as $dates): ?>
 
-         <h4><?= $dates['date']->format('F jS, Y') ?></h4>
+        <h4><?= $dates['date']->format('F jS, Y'); ?></h4>
 
-         <table cellpadding="0" cellspacing="0">
-            <thead>
-                <tr>
-                    <th scope="col">Start</th>
-                    <th scope="col">End</th>
-                    <th scope="col">Band</th>
-                    <th scope="col">Stage</th>
-                    <?php if (!empty($user)): ?>
-                        <th scope="col" class="actions"><?= __('Actions') ?></th>
-                    <?php endif; ?>
-                </tr>
-            </thead>
-            <tbody>
+        <?php foreach ($dates as $stages): ?>
 
-            <?php foreach ($dates as $key => $timetable): ?>
-                <?php if ($key !== 'date'): ?>
+            <h5><?= $stages['stage']; ?></h5>
+
+             <table cellpadding="0" cellspacing="0">
+                <thead>
                     <tr>
-                        <td><?= h($timetable['starttime']->format('H:i A')) ?></td>
-
-                        <?php if ($timetable instanceof App\Model\Entity\Timetable): ?>
-
-                            <td><?= h($timetable->endtime->format('H:i A')) ?></td>
-                            <td><?= $this->Html->link($timetable->band->name, ['controller' => 'Bands', 'action' => 'view', $timetable->band->slug]) ?></td>
-                            <td><?= $this->Html->link($timetable->stage->name, ['controller' => 'Stages', 'action' => 'view', $timetable->stage->slug]) ?></td>
-                        <?php else: ?>
-                            <td>&nbsp;</td>
-                            <td colspan=2>No band planned</td>
-                        <?php endif; ?>
-
+                        <th scope="col">Start</th>
+                        <th scope="col">End</th>
+                        <th scope="col">Band</th>
+                        <th scope="col">Stage</th>
                         <?php if (!empty($user)): ?>
-                            <td class="actions">
-                                <?= $this->Html->link(__('Edit'), ['action' => 'edit',$key]) ?>
-                                <?php if ($timetable instanceof App\Model\Entity\Timetable):
-                                    $message = $dates['date']->format('F jS, Y') . " - " . $timetable['starttime']->format('H:i A');
-                                    ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$key], ['confirm' => __('Are you sure you want to delete timeslot # {0}?', $message)]) ?>
-                                <?php endif; ?>
-                            </td>
+                            <th scope="col" class="actions"><?= __('Actions') ?></th>
                         <?php endif; ?>
-
                     </tr>
+                </thead>
+                <tbody>
 
-                <?php endif; ?>
+                <?php foreach ($stages as $key => $timetable): ?>
+                    <?php if ($key !== 'date'): ?>
+                        <tr>
+                            <td><?= h($timetable['starttime']->format('H:i A')) ?></td>
 
+                            <?php if ($timetable instanceof App\Model\Entity\Timetable): ?>
+
+                                <td><?= h($timetable->endtime->format('H:i A')) ?></td>
+                                <td><?= $this->Html->link($timetable->band->name, ['controller' => 'Bands', 'action' => 'view', $timetable->band->slug]) ?></td>
+                            <?php else: ?>
+                                <td colspan=2>No band planned</td>
+                            <?php endif; ?>
+
+                            <?php if (!empty($user)): ?>
+                                <td class="actions">
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit',$key]) ?>
+                                    <?php if ($timetable instanceof App\Model\Entity\Timetable):
+                                        $message = $dates['date']->format('F jS, Y') . " - " . $stages['stage'] . " - " . $timetable['starttime']->format('H:i A');
+                                        ?>
+                                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete',$key], ['confirm' => __('Are you sure you want to delete timeslot # {0}?', $message)]) ?>
+                                    <?php endif; ?>
+                                </td>
+                            <?php endif; ?>
+
+                        </tr>
+
+                    <?php endif; ?>
+                <?php endforeach; ?>
             <?php endforeach; ?>
         </tbody>
     </table>

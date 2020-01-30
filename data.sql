@@ -228,16 +228,18 @@ ALTER TABLE `stages`
 ALTER TABLE `tickets`
   ADD PRIMARY KEY (`visitor_id`,`festival_id`,`date_id`),
   ADD KEY `festival_key` (`festival_id`),
-  ADD KEY `date_key` (`date_id`);
+  ADD KEY `date_key` (`date_id`),
+  ADD KEY `visitor_key` (`visitor_id`);
 
 --
 -- Indexes for table `timetables`
 --
 ALTER TABLE `timetables`
-  ADD PRIMARY KEY (`band_id`,`festival_id`,`date_id`,`stage_id`),
+  ADD PRIMARY KEY (`festival_id`,`date_id`,`starttime`,`band_id`),
   ADD KEY `festival_key` (`festival_id`),
   ADD KEY `date_key` (`date_id`),
-  ADD KEY `stage_key` (`stage_id`);
+  ADD KEY `stage_key` (`stage_id`),
+  ADD KEY `band_key` (`band_id`);
 
 --
 -- Indexes for table `users`
