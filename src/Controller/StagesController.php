@@ -55,11 +55,7 @@ class StagesController extends AppController
     {
         $stage = $this->Stages->newEntity();
         if ($this->request->is('post')) {
-            //there will be one festival to work with, but if somehow more festivals would be present, the first is retrieved to work with
-            $query = $this->Stages->Festivals->find('all');
-            $festival = $query->firstOrFail();
-
-            $stage->festival = $festival;
+            $stage->festival = $this->festival;
             $stage = $this->Stages->patchEntity($stage, $this->request->getData());
 
             //first the stage is saved without an id

@@ -60,16 +60,12 @@ class TicketsController extends AppController
         $continue = TRUE;
         $date_string = "";
 
-        //there will be one festival to work with, but if somehow more festivals would be present, the first is retrieved to work with
-        $query = $this->Tickets->Festivals->find('all');
-        $festival = $query->firstOrFail();
-
         if ($this->request->is('post')) {
             $data = $this->request->getData();
 
             if(empty($data['dates']['_ids'])) {
                 $continue = FALSE;
-                $this->Flash->error(__('Please select the dates you want to visit ' . $festival->title));
+                $this->Flash->error(__('Please select the dates you want to visit ' . $this->festival->title));
             }
             else {
                 if(count($data['dates']['_ids']) === 1) {
@@ -95,7 +91,7 @@ class TicketsController extends AppController
 
                         $ticket->date = $dates[$key];
                         $ticket->visitor = $visitor;
-                        $ticket->festival = $festival;
+                        $ticket->festival = $this->festival;
 
                         if (!$this->Tickets->save($ticket)) {
                             $continue = FALSE;
@@ -114,16 +110,16 @@ class TicketsController extends AppController
                 if($continue) {
                     $email = new Email('gmail');
                     $email->to($data['visitor']['email'])
-                        ->subject('Tickets ' . $festival->title)
+                        ->subject('Tickets ' . $this->festival->title)
                         //->send('My message')
                         ;
 
-                    $body = 'Hi, congratulations, you successfully booked your '.$festival->title.' tickets '. $date_string .'. See you then! Cheers, the LRMF team';
+                    $body = 'Hi, congratulations, you successfully booked your '.$this->festival->title.' tickets '. $date_string .'. See you then! Cheers, the LRMF team';
 
                     if($email->send($body)) {
                         foreach($dates as $date) {
                             $query = $this->Tickets->find('all')
-                                                ->where(['tickets.festival_id' => $festival->id,
+                                                ->where(['tickets.festival_id' => $this->festival->id,
                                                         'tickets.date_id' => $date->id,
                                                         'tickets.visitor_id' => $visitor->id
                                                     ]);
@@ -144,7 +140,7 @@ class TicketsController extends AppController
 
         //$festivals = $this->Tickets->Festivals->find('list', ['limit' => 200]);
         $dates = $this->Tickets->Dates->find('list', ['limit' => 200])
-                                        ->where(['dates.festival_id' => $festival->id]);
+                                        ->where(['dates.festival_id' => $this->festival->id]);
         $visitors = $this->Tickets->Visitors->find('list', ['limit' => 200]);
 
         $this->set(compact('ticket', 'dates','festival'));
