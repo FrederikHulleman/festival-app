@@ -6,7 +6,7 @@
 
 ?>
 <div class="festivals view large-9 medium-8 columns content">
-    <h3>VISITOR PAGE <?= h($festival->title) ?></h3>
+    <h3><?= h($festival->title) ?></h3>
     <div class="row">
         <?= $this->Text->autoParagraph(h($festival->description)); ?>
     </div>

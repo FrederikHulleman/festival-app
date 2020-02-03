@@ -17,13 +17,6 @@ class FestivalsController extends AppController
     {
         parent::initialize();
 
-        //there will be one festival to work with, but if somehow more festivals would be present, the first is retrieved to work with
-        $this->festival = $this->Festivals->find('all')
-            ->contain(['Dates', 'Stages', 'Tickets', 'Timetables'])
-            ->firstOrFail();
-
-        $this->set('festival', $this->festival);
-
         $this->Auth->allow(['view']);
     }
 
