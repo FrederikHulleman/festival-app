@@ -50,7 +50,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <ul class="right">
                 <?php
                     if (!empty($user)):?>
-                    <li><?= $this->Html->link(__($user['email']), ['controller' => 'Users', 'action' => 'view', $user['id']]); ?></li>
+                    <li><?= $this->Html->link(__($user['email']), ['controller' => 'Users', 'action' => 'index']); ?></li>
                 <?php endif; ?>
                 <li>
                     <?php
